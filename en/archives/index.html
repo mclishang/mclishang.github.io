@@ -1,0 +1,491 @@
+<!DOCTYPE html><html lang="en" class="h-full"> <head><script>
+        (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        let theme;
+        if ( savedTheme === 'system') {
+          theme = systemTheme;
+        } else {
+          theme = savedTheme || 'light';
+        }
+        localStorage.setItem('theme', savedTheme || theme);
+        document.documentElement.setAttribute('data-theme', theme);
+
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        })();
+    </script><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="日常记录"><meta name="author" content="mclishang"><link rel="alternate" type="application/rss+xml" title="MCLISHANG" href="https://www.lishang.fun/rss.xml"><link rel="icon" href="/favicon/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap"><link rel="stylesheet" href="https://fonts.font.im/css2?family=EB+Garamond&display=swap"><title>Archive - MCLISHANG</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.U4jOVs4w.js"></script><link rel="stylesheet" href="/_astro/_page_.Ci7VY_Qp.css">
+<link rel="stylesheet" href="/_astro/_page_.SP8wi-yF.css">
+<style>#progress-circle{stroke:var(--text-color);transition:stroke-dasharray .1s linear}.scrollbar-thin::-webkit-scrollbar{width:4px}.scrollbar-thin::-webkit-scrollbar-track{background:transparent}.scrollbar-thin::-webkit-scrollbar-thumb{background:#9ca3af80;border-radius:20px}.toc-link.is-active{background-color:var(--button-hover-color)!important;color:var(--link-color)!important;font-weight:600}
+</style></head> <body class="h-full bg-[var(--bg-color)]"> <div id="loading-overlay" aria-hidden="true"> <div class="spinner"></div> </div>  <div class="flex flex-col min-h-screen"> <div> <!-- header --><div id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out md:relative md:translate-y-0"> <div class="flex items-center pt-2 text-[var(--text-color)] w-full px-3 sm:px-4 md:py-4 md:max-w-[var(--header-width)] md:px-0 md:mx-auto"> <!-- logo --> <div class="min-w-0 flex-1 pr-2 sm:pr-3 py-2 z-30 header-logo"> <a href="/en/" class="block min-w-0"> <span class="block truncate text-xl sm:text-2xl font-bold hover:opacity-60 transition-opacity md:text-3xl">MCLISHANG</span> </a> </div> <!-- tools --> <div class="ml-2 sm:ml-3 flex shrink-0 gap-1 sm:gap-2 py-2 justify-end z-30 min-w-0"> <!-- Search --> <button id="search-button" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 hover:bg-[var(--button-hover-color)] active:scale-90 rounded-lg hover:text-current border border-[var(--button-border-color)] transition-all duration-300" aria-label="Search"> <svg width="1em" height="1em" class="w-4 h-4" data-icon="fa6-solid:magnifying-glass">   <symbol id="ai:fa6-solid:magnifying-glass" viewBox="0 0 512 512"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208M208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288"/></symbol><use href="#ai:fa6-solid:magnifying-glass"></use>  </svg> </button> <!-- Dark Mode --> <button id="themeToggle" title="Switch Dark Mode" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 hover:bg-[var(--button-hover-color)] rounded-lg hover:text-current active:scale-90 border border-[var(--button-border-color)] transition-all duration-300" data-t-light="Switch to Light Mode" data-t-dark="Switch to Dark Mode" data-t-system="Switch to System Mode" data-astro-cid-dvkcbgz6> <svg width="1em" height="1em" class="moon w-5 h-5" data-astro-cid-dvkcbgz6="true" data-icon="material-symbols:dark-mode-outline-rounded">   <symbol id="ai:material-symbols:dark-mode-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21q-3.775 0-6.387-2.613T3 12q0-3.45 2.25-5.988T11 3.05q.325-.05.575.088t.4.362t.163.525t-.188.575q-.425.65-.638 1.375T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q.775 0 1.538-.225t1.362-.625q.275-.175.563-.162t.512.137q.25.125.388.375t.087.6q-.35 3.45-2.937 5.725T12 21m0-2q2.2 0 3.95-1.213t2.55-3.162q-.5.125-1 .2t-1 .075q-3.075 0-5.238-2.163T9.1 7.5q0-.5.075-1t.2-1q-1.95.8-3.163 2.55T5 12q0 2.9 2.05 4.95T12 19m-.25-6.75"/></symbol><use href="#ai:material-symbols:dark-mode-outline-rounded"></use>  </svg> <svg width="1em" height="1em" class="sun w-5 h-5" data-astro-cid-dvkcbgz6="true" data-icon="material-symbols:wb-sunny-outline-rounded">   <symbol id="ai:material-symbols:wb-sunny-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M11 3V2q0-.425.288-.712T12 1t.713.288T13 2v1q0 .425-.288.713T12 4t-.712-.288T11 3m0 19v-1q0-.425.288-.712T12 20t.713.288T13 21v1q0 .425-.288.713T12 23t-.712-.288T11 22m11-9h-1q-.425 0-.712-.288T20 12t.288-.712T21 11h1q.425 0 .713.288T23 12t-.288.713T22 13M3 13H2q-.425 0-.712-.288T1 12t.288-.712T2 11h1q.425 0 .713.288T4 12t-.288.713T3 13m16.75-7.325l-.35.35q-.275.275-.687.275T18 6q-.275-.275-.288-.687t.263-.713l.375-.375q.275-.3.7-.3t.725.3t.288.725t-.313.725M6.025 19.4l-.375.375q-.275.3-.7.3t-.725-.3t-.288-.725t.313-.725l.35-.35q.275-.275.688-.275T6 18q.275.275.288.688t-.263.712m12.3.35l-.35-.35q-.275-.275-.275-.687T18 18q.275-.275.688-.287t.712.262l.375.375q.3.275.3.7t-.3.725t-.725.288t-.725-.313M4.6 6.025l-.375-.375q-.3-.275-.3-.7t.3-.725t.725-.288t.725.313l.35.35q.275.275.275.688T6 6q-.275.275-.687.288T4.6 6.025M12 18q-2.5 0-4.25-1.75T6 12t1.75-4.25T12 6t4.25 1.75T18 12t-1.75 4.25T12 18m0-2q1.675 0 2.838-1.162T16 12t-1.162-2.838T12 8T9.162 9.163T8 12t1.163 2.838T12 16m0-4"/></symbol><use href="#ai:material-symbols:wb-sunny-outline-rounded"></use>  </svg> <svg width="1em" height="1em" class="system w-5 h-5" data-astro-cid-dvkcbgz6="true" data-icon="material-symbols:radio-button-partial-outline">   <symbol id="ai:material-symbols:radio-button-partial-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17V7Q9.925 7 8.463 8.463T7 12t1.463 3.538T12 17m0 5q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8"/></symbol><use href="#ai:material-symbols:radio-button-partial-outline"></use>  </svg> </button> <script>
+
+if (typeof window !== 'undefined') {
+  
+  let toastTimer = null;
+
+  function initThemeToggle() {
+    const htmlRoot = document.querySelector('html');
+    const themeToggle = document.getElementById('themeToggle');
+
+    const getTheme = () => {
+      const localStorageTheme = localStorage?.getItem("theme") ?? '';
+      if (['dark', 'light', 'system'].includes(localStorageTheme)) {
+        return localStorageTheme;
+      }
+      return 'system';
+    };
+
+    // 从 DOM 属性实时获取翻译
+    const translations = {
+      light: themeToggle.dataset.tLight,
+      dark: themeToggle.dataset.tDark,
+      system: themeToggle.dataset.tSystem
+    };
+
+    function showThemeToast(themeName) {
+      let toast = document.getElementById('theme-toast') || (() => {
+        const t = document.createElement('div');
+        t.id = 'theme-toast';
+        document.body.appendChild(t);
+        return t;
+      })();
+
+      toast.textContent = translations[themeName] || translations['system'];
+      
+      clearTimeout(toastTimer);
+      toast.classList.remove('show');
+      void toast.offsetWidth; 
+      toast.classList.add('show');
+
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    const setTheme = (themeSet, isFirstLoad = false) => { 
+      if (themeSet === 'dark') {
+        htmlRoot.setAttribute('data-theme', 'dark');
+        htmlRoot.classList.remove('system-theme');
+      } else if (themeSet === 'light') {
+        htmlRoot.removeAttribute('data-theme');
+        htmlRoot.classList.remove('system-theme');
+      } else {
+        htmlRoot.classList.add('system-theme');
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          htmlRoot.setAttribute('data-theme', 'dark');
+        } else {
+          htmlRoot.removeAttribute('data-theme');
+        }
+      }
+      window.localStorage.setItem('theme', themeSet);
+
+      // --- 新增：如果不是页面初次加载，则显示弹窗 ---
+      if (!isFirstLoad) {
+        showThemeToast(themeSet);
+      }
+    };
+
+    // 系统主题变化监听器
+    const handleSystemThemeChange = (e) => {
+      if (htmlRoot.classList.contains('system-theme')) {
+        if (e.matches) {
+          htmlRoot.setAttribute('data-theme', 'dark');
+        } else {
+          htmlRoot.removeAttribute('data-theme');
+        }
+      }
+    };
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.removeEventListener?.('change', handleSystemThemeChange);
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
+
+    const handleToggleClick = () => {
+      const currentTheme = localStorage.getItem('theme') || 'system';
+      let nextTheme;
+      if (currentTheme === 'light') nextTheme = 'dark';
+      else if (currentTheme === 'dark') nextTheme = 'system';
+      else nextTheme = 'light';
+      setTheme(nextTheme, false);
+    };
+
+    themeToggle?.removeEventListener('click', handleToggleClick);
+    themeToggle?.addEventListener('click', handleToggleClick);
+
+    setTheme(getTheme(), true);
+  }
+
+  document.addEventListener('astro:page-load', initThemeToggle);
+  document.addEventListener('astro:after-swap', initThemeToggle);
+}
+</script>  <!-- RSS --> <!-- <a href="/rss.xml" target="_blank" class="flex items-center justify-center w-10 h-10 hover:bg-[var(--button-hover-color)] active:scale-90 rounded-lg hover:text-current border border-[var(--button-border-color)] transition-all duration-300">
+            <Icon name="simple-icons:rss" class="w-4 h-4" />
+        </a> --> <!-- Language Switcher --> <div class="relative"> <button id="language-button" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 hover:bg-[var(--button-hover-color)] active:scale-90 rounded-lg hover:text-current border border-[var(--button-border-color)] transition-all duration-300" aria-label="Language Switcher"> <svg width="1em" height="1em" class="w-4 h-4" data-icon="fa6-solid:globe">   <symbol id="ai:fa6-solid:globe" viewBox="0 0 512 512"><path fill="currentColor" d="M352 256c0 22.2-1.2 43.6-3.3 64H163.4c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.3c2.2 20.4 3.3 41.8 3.3 64m28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64m112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7m-209 0H18.6c30-74.1 93.6-130.9 172-151.6c-25.5 34.2-45.3 87.7-55.3 151.6M8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64m186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5c-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6c-78.4-20.7-142-77.5-172-151.6zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6h116.7z"/></symbol><use href="#ai:fa6-solid:globe"></use>  </svg> </button> <!-- Language Dropdown Menu --> <div id="language-menu" class="hidden absolute right-0 mt-2 w-30 bg-[var(--bg-color)] border border-[var(--button-border-color)] rounded-lg shadow-lg z-50"> <div class="py-1 text-right"> <!-- 中文链接 --> <a href="/archives/" class="block mx-2 my-1 p-2 text-sm rounded hover:bg-[var(--button-hover-color)]"> 
+简体中文
+</a> <!-- 英文链接 --> <a href="/en/archives/" class="block mx-2 my-1 p-2 text-sm rounded bg-[var(--button-hover-color)]"> <svg width="1em" height="1em" class="w-2 h-2 inline mr-2" data-icon="fa6-solid:circle">   <symbol id="ai:fa6-solid:circle" viewBox="0 0 512 512"><path fill="currentColor" d="M256 512a256 256 0 1 0 0-512a256 256 0 1 0 0 512"/></symbol><use href="#ai:fa6-solid:circle"></use>  </svg>
+English
+</a> </div> </div> </div> <div class="relative md:hidden"> <!-- Mobile Menu --> <button id="mobile-menu-button" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 hover:bg-[var(--button-hover-color)] active:scale-90 rounded-lg hover:text-current border border-[var(--button-border-color)] transition-all duration-300" aria-label="Mobile Menu"> <svg width="0.88em" height="1em" class="w-4 h-4 sm:w-5 sm:h-5" data-icon="fa6-solid:align-justify">   <symbol id="ai:fa6-solid:align-justify" viewBox="0 0 448 512"><path fill="currentColor" d="M448 64c0-17.7-14.3-32-32-32H32C14.3 32 0 46.3 0 64s14.3 32 32 32h384c17.7 0 32-14.3 32-32m0 256c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h384c17.7 0 32-14.3 32-32M0 192c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32m448 256c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h384c17.7 0 32-14.3 32-32"/></symbol><use href="#ai:fa6-solid:align-justify"></use>  </svg> </button> </div> </div> </div> </div> <!-- nav_bar --> <div id="nav-bar" class="hidden md:flex absolute left-1/2 top-0 transform -translate-x-1/2  justify-center items-center text-lg font-bold my-5 z-100"> <div id="nav-bar-list" class="transition relative z-10 flex max-w-max flex-1 items-center justify-center rounded-outer p-2 backdrop-blur rounded-xl bg-[color:var(--bg-color)]/20"> <!-- 首页链接 --> <a href="/en/" class="transition-colors rounded-lg px-3 py-1 mx-1 hover:text-current hover:bg-[var(--button-hover-color)]"> Home </a> <!-- 归档链接 --> <a href="/en/archives/" class="transition-colors rounded-lg px-3 py-1 mx-1 hover:text-current bg-[var(--button-hover-color)]"> Archive </a> <!-- 关于链接 --> <a href="/en/about/" class="transition-colors rounded-lg px-3 py-1 mx-1 hover:text-current hover:bg-[var(--button-hover-color)]"> About </a> <!-- 友链链接 --> <a href="/en/friends/" class="transition-colors rounded-lg px-3 py-1 mx-1 hover:text-current hover:bg-[var(--button-hover-color)]"> Friends </a> </div> </div> <!-- Mobile Menu --> <div id="mobile-menu-container" class="fixed inset-0 z-[100] hidden"> <div id="mobile-menu-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300 ease-in-out"></div> <div id="mobile-menu-drawer" class="absolute top-0 left-0 bottom-0 w-[70%] max-w-[300px] bg-[var(--bg-color)] shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col"> <div class="flex items-center justify-between p-5 border-b border-[var(--button-border-color)]"> <span class="text-xl font-bold header-logo">MCLISHANG</span> <button id="mobile-menu-close" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[var(--button-hover-color)] transition-colors"> <svg width="0.75em" height="1em" class="w-5 h-5" data-icon="fa6-solid:xmark">   <symbol id="ai:fa6-solid:xmark" viewBox="0 0 384 512"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7L86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256L41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3l105.4 105.3c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256z"/></symbol><use href="#ai:fa6-solid:xmark"></use>  </svg> </button> </div> <nav class="flex flex-col py-4 px-2"> <a href="/en/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--button-hover-color)] hover:text-[var(--link-color)] transition-colors active:bg-[var(--button-hover-color)] active:text-[var(--link-color)]"> <svg width="1.13em" height="1em" class="w-4 h-4 opacity-70" data-icon="fa6-solid:house">   <symbol id="ai:fa6-solid:house" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1v16.2c0 22.1-17.9 40-40 40h-16c-1.1 0-2.2 0-3.3-.1c-1.4.1-2.8.1-4.2.1L416 512h-24c-22.1 0-40-17.9-40-40v-88c0-17.7-14.3-32-32-32h-64c-17.7 0-32 14.3-32 32v88c0 22.1-17.9 40-40 40h-55.9c-1.5 0-3-.1-4.5-.2c-1.2.1-2.4.2-3.6.2h-16c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9.1-2.8v-69.7h-32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7l255.4 224.5c8 7 12 15 11 24"/></symbol><use href="#ai:fa6-solid:house"></use>  </svg> <span>Home</span> </a> <a href="/en/archives/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--button-hover-color)] hover:text-[var(--link-color)] transition-colors active:bg-[var(--button-hover-color)] active:text-[var(--link-color)]"> <svg width="0.88em" height="1em" class="w-4 h-4 opacity-70" data-icon="fa6-solid:book-bookmark">   <symbol id="ai:fa6-solid:book-bookmark" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 43 43 0 96 0h96v190.7c0 13.4 15.5 20.9 26 12.5l54-43.2l54 43.2c10.5 8.4 26 .9 26-12.5V0h64c17.7 0 32 14.3 32 32v320c0 17.7-14.3 32-32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-53 0-96-43-96-96zm64 320c0 17.7 14.3 32 32 32h256v-64H96c-17.7 0-32 14.3-32 32"/></symbol><use href="#ai:fa6-solid:book-bookmark"></use>  </svg> <span>Archive</span> </a> <a href="/en/about/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--button-hover-color)] hover:text-[var(--link-color)] transition-colors active:bg-[var(--button-hover-color)] active:text-[var(--link-color)]"> <svg width="0.88em" height="1em" class="w-4 h-4 opacity-70" data-icon="fa6-solid:user">   <symbol id="ai:fa6-solid:user" viewBox="0 0 448 512"><path fill="currentColor" d="M224 256a128 128 0 1 0 0-256a128 128 0 1 0 0 256m-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512h388.6c16.4 0 29.7-13.3 29.7-29.7c0-98.5-79.8-178.3-178.3-178.3z"/></symbol><use href="#ai:fa6-solid:user"></use>  </svg> <span>About</span> </a> <a href="/en/friends/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--button-hover-color)] hover:text-[var(--link-color)] transition-colors active:bg-[var(--button-hover-color)] active:text-[var(--link-color)]"> <svg width="1.25em" height="1em" class="w-4 h-4 opacity-70" data-icon="fa6-solid:link">   <symbol id="ai:fa6-solid:link" viewBox="0 0 640 512"><path fill="currentColor" d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0z"/></symbol><use href="#ai:fa6-solid:link"></use>  </svg> <span>Friends</span> </a> </nav> <div class="mt-auto p-5 border-t border-[var(--button-border-color)] flex gap-1 text-sm opacity-70"> <!-- <a href={getLocalePath("/", "zh-cn")} class="text-sm opacity-70 active:text-[var(--link-color)]">简体中文</a>
+             <a href={getLocalePath("/", "en")} class="text-sm opacity-70 active:text-[var(--link-color)]">English</a> -->
+© 2024 - 2026 <a class="link-line" target="_self" href="https://www.lishang.fun/">mclishang</a>.
+</div> </div> </div>  <script type="module">function s(){const e=document.getElementById("main-header");if(!e)return;let t=window.scrollY,i=!1;function l(){const n=window.scrollY,r=n-t;window.innerWidth<=MOBILE_HEADER_MAX_WIDTH?n<=50?e.classList.remove("header-hidden"):r>0&&n>100?e.classList.add("header-hidden"):r<0&&e.classList.remove("header-hidden"):e.classList.remove("header-hidden"),t=n,i=!1}function d(){i||(window.requestAnimationFrame(l),i=!0)}window.removeEventListener("scroll",d),window.addEventListener("scroll",d,{passive:!0})}document.addEventListener("astro:page-load",s);</script> <script type="module">function a(){const e=document.getElementById("language-button"),t=document.getElementById("language-menu"),d=document.getElementById("mobile-menu");!e||e.dataset.bound==="true"||(e.dataset.bound="true",e.addEventListener("click",n=>{n.stopPropagation(),d?.classList.add("hidden"),t?.classList.toggle("hidden")}),document.addEventListener("click",n=>{e&&t&&!e.contains(n.target)&&!t.contains(n.target)&&t.classList.add("hidden")}))}document.addEventListener("astro:page-load",a);document.addEventListener("astro:after-swap",a);</script> <script type="module">function r(){const l=document.getElementById("mobile-menu-button"),c=document.getElementById("mobile-menu-close"),n=document.getElementById("mobile-menu-container"),d=document.getElementById("mobile-menu-overlay"),s=document.getElementById("mobile-menu-drawer"),e=document.getElementById("nav-bar"),t=document.getElementById("nav-bar-list");if(!l||!n)return;function i(){n.classList.remove("hidden"),requestAnimationFrame(()=>{d?.classList.add("opacity-100"),s?.classList.remove("-translate-x-full")}),document.body.style.overflow="hidden"}function a(){d?.classList.remove("opacity-100"),s?.classList.add("-translate-x-full"),setTimeout(()=>{n.classList.add("hidden"),document.body.style.overflow=""},300)}l.addEventListener("click",i),c?.addEventListener("click",a),d?.addEventListener("click",a),s?.querySelectorAll("a").forEach(m=>{m.addEventListener("click",a)});let o=!1;window.addEventListener("scroll",()=>{window.scrollY>0&&!o&&e&&t?(e.classList.add("fixed"),t.classList.add("border","border-[var(--button-border-color)]","shadow-[0_4px_12px_var(--shadow-color)]"),o=!0):window.scrollY===0&&o&&e&&t&&(e.classList.remove("fixed"),t.classList.remove("border","border-[var(--button-border-color)]","shadow-[0_4px_12px_var(--shadow-color)]"),o=!1)})}document.addEventListener("DOMContentLoaded",r);document.addEventListener("astro:page-load",r);</script> <script>(function(){const scriptUrl = "/pagefind/pagefind.js";
+
+async function loadAndSearch() {
+  // 1. 如果已经加载过了，直接返回
+  if (window.pagefind && typeof window.pagefind.search === 'function') {
+    return;
+  }
+  
+  if (window.pagefindLoading) return;
+  window.pagefindLoading = true;
+
+  try {
+    // 动态导入脚本
+    const pagefind = await import(scriptUrl);
+    await pagefind.options({ excerptLength: 20 });
+    window.pagefind = pagefind;
+    
+    // 触发自定义事件，通知搜索组件：Pagefind 准备好了
+    document.dispatchEvent(new CustomEvent('pagefind-ready'));
+  } catch (error) {
+    console.error('Pagefind 加载失败:', error);
+  } finally {
+    window.pagefindLoading = false;
+  }
+}
+
+// 2. 绑定到搜索按钮
+function attachSearchListener() {
+  const btn = document.getElementById('search-button');
+  if (btn) {
+    btn.addEventListener('click', loadAndSearch, { once: true });
+  }
+}
+
+// 兼容 Astro 的 View Transitions
+document.addEventListener('astro:page-load', attachSearchListener);
+})();</script> </div> <main class="flex-grow">  <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="64B2t" component-url="/_astro/ArchivePanel.DBM67bp4.js" component-export="default" renderer-url="/_astro/client.svelte.DHW48yFT.js" props="{&quot;sortedPosts&quot;:[1,[[0,{&quot;id&quot;:[0,&quot;test-article&quot;],&quot;data&quot;:[0,{&quot;title&quot;:[0,&quot;测试文章&quot;],&quot;pubDate&quot;:[3,&quot;2026-04-10T06:58:00.000Z&quot;],&quot;draft&quot;:[0,false],&quot;description&quot;:[0,&quot;一篇用于验证博客排版、内容渲染与阅读体验的综合测试文章。&quot;],&quot;image&quot;:[0,&quot;&quot;],&quot;slugId&quot;:[0,&quot;test-article&quot;],&quot;category&quot;:[0,&quot;测试&quot;]}],&quot;body&quot;:[0,&quot;这是一篇用于发布验证的测试文章。它会尽量覆盖博客中常见的内容元素，方便检查首页摘要、文章详情页、目录、代码高亮、数学公式、引用和表格样式是否符合预期。\n\n## 文章目标\n\n这篇文章主要用于完成三件事：\n\n1. 验证文章列表是否能正常展示标题、摘要、分类和发布日期。\n2. 验证正文排版是否清晰，包括段落、强调、列表、引用和代码块。\n3. 验证扩展内容是否正常渲染，例如表格、公式和分节目录。\n\n如果这一篇文章显示正常，后续继续发布正式内容时就会更稳妥。\n\n## 基础排版示例\n\n这是一个普通段落，用于观察默认字号、行高和段间距是否合适。\n\n下面是一些常见的行内样式：\n\n- 这是 **粗体** 文本。\n- 这是 *斜体* 文本。\n- 这是 `inline code` 行内代码。\n- 这是一个带有中英文混排的句子，用来观察字距与断行表现是否自然。\n\n## 列表与结构化内容\n\n在写博客时，列表经常用于表达步骤、要点或者对比结论。一个好的列表应该简洁、并列且易于扫描。\n\n### 无序列表\n\n- 内容结构尽量清晰。\n- 小节标题尽量语义明确。\n- 示例内容要足够真实，不能只有空壳。\n\n### 有序列表\n\n1. 先确定主题。\n2. 再整理结构。\n3. 最后补充示例与总结。\n\n## 引用示例\n\n&gt; 写作不是把想到的内容全部堆上去，而是让读者可以顺着结构自然读下去。\n\n引用块适合放摘要观点、摘录或者强调性的说明。如果这里的边框、背景色或缩进表现正常，说明基础样式已经可以支持日常写作。\n\n## 代码示例\n\n下面放一段简单的 TypeScript 代码，用来检查代码块的字体、缩进、滚动和高亮效果：\n\n```ts\ntype ArticleMeta = {\n  title: string\n  slugId: string\n  draft?: boolean\n}\n\nexport function formatArticle(meta: ArticleMeta) {\n  return `${meta.title} (${meta.slugId})`\n}\n```\n\n如果代码块在移动端也能正常横向滚动，不会挤压页面布局，那么阅读体验会更稳定。\n\n## 表格示例\n\n下面的表格用于测试对齐、边框和横向排版：\n\n| 项目 | 说明 | 状态 |\n| --- | --- | --- |\n| 标题 | 是否正常显示在文章页顶部 | 已覆盖 |\n| 摘要 | 是否可用于首页卡片描述 | 已覆盖 |\n| 代码块 | 是否具备可读性和层次感 | 已覆盖 |\n| 表格 | 是否支持基础信息整理 | 已覆盖 |\n\n## 图片占位说明\n\n当前文章没有设置封面图，因此文章顶部不会展示 cover。这样也能顺便验证“无封面文章”的默认表现是否自然。\n\n如果后续需要测试图片内容，可以在正文里补充标准 Markdown 图片，例如：\n\n```md\n![示例图片](https://example.com/demo-image.jpg)\n```\n\n## 数学公式示例\n\n如果站点已经启用数学渲染，那么下面的内容应该能够正常显示：\n\n行内公式：$a^2 + b^2 = c^2$\n\n块级公式：\n\n$$\n\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}\n$$\n\n这部分主要用于检查公式字体、间距以及在窄屏下的显示效果。\n\n## 结尾总结\n\n这篇测试文章本身没有复杂主题，但它覆盖了一个博客在正式上线前最常见的内容展示场景。\n\n如果你现在能在首页看到它、能在详情页正常阅读它、能在归档页通过分类找到它，那么当前博客的基础发布链路就已经跑通了。&quot;],&quot;filePath&quot;:[0,&quot;src/content/blog/test-article/zh-cn.md&quot;],&quot;digest&quot;:[0,&quot;28df225c135afbbf&quot;],&quot;rendered&quot;:[0,{&quot;html&quot;:[0,&quot;&lt;p&gt;这是一篇用于发布验证的测试文章。它会尽量覆盖博客中常见的内容元素，方便检查首页摘要、文章详情页、目录、代码高亮、数学公式、引用和表格样式是否符合预期。&lt;/p&gt;\n&lt;h2 id=\&quot;文章目标\&quot;&gt;文章目标&lt;/h2&gt;\n&lt;p&gt;这篇文章主要用于完成三件事：&lt;/p&gt;\n&lt;ol&gt;\n&lt;li&gt;验证文章列表是否能正常展示标题、摘要、分类和发布日期。&lt;/li&gt;\n&lt;li&gt;验证正文排版是否清晰，包括段落、强调、列表、引用和代码块。&lt;/li&gt;\n&lt;li&gt;验证扩展内容是否正常渲染，例如表格、公式和分节目录。&lt;/li&gt;\n&lt;/ol&gt;\n&lt;p&gt;如果这一篇文章显示正常，后续继续发布正式内容时就会更稳妥。&lt;/p&gt;\n&lt;h2 id=\&quot;基础排版示例\&quot;&gt;基础排版示例&lt;/h2&gt;\n&lt;p&gt;这是一个普通段落，用于观察默认字号、行高和段间距是否合适。&lt;/p&gt;\n&lt;p&gt;下面是一些常见的行内样式：&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;这是 &lt;strong&gt;粗体&lt;/strong&gt; 文本。&lt;/li&gt;\n&lt;li&gt;这是 &lt;em&gt;斜体&lt;/em&gt; 文本。&lt;/li&gt;\n&lt;li&gt;这是 &lt;code&gt;inline code&lt;/code&gt; 行内代码。&lt;/li&gt;\n&lt;li&gt;这是一个带有中英文混排的句子，用来观察字距与断行表现是否自然。&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h2 id=\&quot;列表与结构化内容\&quot;&gt;列表与结构化内容&lt;/h2&gt;\n&lt;p&gt;在写博客时，列表经常用于表达步骤、要点或者对比结论。一个好的列表应该简洁、并列且易于扫描。&lt;/p&gt;\n&lt;h3 id=\&quot;无序列表\&quot;&gt;无序列表&lt;/h3&gt;\n&lt;ul&gt;\n&lt;li&gt;内容结构尽量清晰。&lt;/li&gt;\n&lt;li&gt;小节标题尽量语义明确。&lt;/li&gt;\n&lt;li&gt;示例内容要足够真实，不能只有空壳。&lt;/li&gt;\n&lt;/ul&gt;\n&lt;h3 id=\&quot;有序列表\&quot;&gt;有序列表&lt;/h3&gt;\n&lt;ol&gt;\n&lt;li&gt;先确定主题。&lt;/li&gt;\n&lt;li&gt;再整理结构。&lt;/li&gt;\n&lt;li&gt;最后补充示例与总结。&lt;/li&gt;\n&lt;/ol&gt;\n&lt;h2 id=\&quot;引用示例\&quot;&gt;引用示例&lt;/h2&gt;\n&lt;blockquote&gt;\n&lt;p&gt;写作不是把想到的内容全部堆上去，而是让读者可以顺着结构自然读下去。&lt;/p&gt;\n&lt;/blockquote&gt;\n&lt;p&gt;引用块适合放摘要观点、摘录或者强调性的说明。如果这里的边框、背景色或缩进表现正常，说明基础样式已经可以支持日常写作。&lt;/p&gt;\n&lt;h2 id=\&quot;代码示例\&quot;&gt;代码示例&lt;/h2&gt;\n&lt;p&gt;下面放一段简单的 TypeScript 代码，用来检查代码块的字体、缩进、滚动和高亮效果：&lt;/p&gt;\n&lt;pre class=\&quot;astro-code one-dark-pro\&quot; style=\&quot;background-color:#282c34;color:#abb2bf; overflow-x: auto;\&quot; tabindex=\&quot;0\&quot; data-language=\&quot;ts\&quot;&gt;&lt;code&gt;&lt;span class=\&quot;line\&quot;&gt;&lt;span style=\&quot;color:#C678DD\&quot;&gt;type&lt;/span&gt;&lt;span style=\&quot;color:#E5C07B\&quot;&gt; ArticleMeta&lt;/span&gt;&lt;span style=\&quot;color:#56B6C2\&quot;&gt; =&lt;/span&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt; {&lt;/span&gt;&lt;/span&gt;\n&lt;span class=\&quot;line\&quot;&gt;&lt;span style=\&quot;color:#E06C75\&quot;&gt;  title&lt;/span&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;: &lt;/span&gt;&lt;span style=\&quot;color:#E5C07B\&quot;&gt;string&lt;/span&gt;&lt;/span&gt;\n&lt;span class=\&quot;line\&quot;&gt;&lt;span style=\&quot;color:#E06C75\&quot;&gt;  slugId&lt;/span&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;: &lt;/span&gt;&lt;span style=\&quot;color:#E5C07B\&quot;&gt;string&lt;/span&gt;&lt;/span&gt;\n&lt;span class=\&quot;line\&quot;&gt;&lt;span style=\&quot;color:#E06C75\&quot;&gt;  draft&lt;/span&gt;&lt;span style=\&quot;color:#C678DD\&quot;&gt;?&lt;/span&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;: &lt;/span&gt;&lt;span style=\&quot;color:#E5C07B\&quot;&gt;boolean&lt;/span&gt;&lt;/span&gt;\n&lt;span class=\&quot;line\&quot;&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;}&lt;/span&gt;&lt;/span&gt;\n&lt;span class=\&quot;line\&quot;&gt;&lt;/span&gt;\n&lt;span class=\&quot;line\&quot;&gt;&lt;span style=\&quot;color:#C678DD\&quot;&gt;export&lt;/span&gt;&lt;span style=\&quot;color:#C678DD\&quot;&gt; function&lt;/span&gt;&lt;span style=\&quot;color:#61AFEF\&quot;&gt; formatArticle&lt;/span&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;(&lt;/span&gt;&lt;span style=\&quot;color:#E06C75;font-style:italic\&quot;&gt;meta&lt;/span&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;: &lt;/span&gt;&lt;span style=\&quot;color:#E5C07B\&quot;&gt;ArticleMeta&lt;/span&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;) {&lt;/span&gt;&lt;/span&gt;\n&lt;span class=\&quot;line\&quot;&gt;&lt;span style=\&quot;color:#C678DD\&quot;&gt;  return&lt;/span&gt;&lt;span style=\&quot;color:#98C379\&quot;&gt; `&lt;/span&gt;&lt;span style=\&quot;color:#C678DD\&quot;&gt;${&lt;/span&gt;&lt;span style=\&quot;color:#E5C07B\&quot;&gt;meta&lt;/span&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;.&lt;/span&gt;&lt;span style=\&quot;color:#E06C75\&quot;&gt;title&lt;/span&gt;&lt;span style=\&quot;color:#C678DD\&quot;&gt;}&lt;/span&gt;&lt;span style=\&quot;color:#98C379\&quot;&gt; (&lt;/span&gt;&lt;span style=\&quot;color:#C678DD\&quot;&gt;${&lt;/span&gt;&lt;span style=\&quot;color:#E5C07B\&quot;&gt;meta&lt;/span&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;.&lt;/span&gt;&lt;span style=\&quot;color:#E06C75\&quot;&gt;slugId&lt;/span&gt;&lt;span style=\&quot;color:#C678DD\&quot;&gt;}&lt;/span&gt;&lt;span style=\&quot;color:#98C379\&quot;&gt;)`&lt;/span&gt;&lt;/span&gt;\n&lt;span class=\&quot;line\&quot;&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;\n&lt;p&gt;如果代码块在移动端也能正常横向滚动，不会挤压页面布局，那么阅读体验会更稳定。&lt;/p&gt;\n&lt;h2 id=\&quot;表格示例\&quot;&gt;表格示例&lt;/h2&gt;\n&lt;p&gt;下面的表格用于测试对齐、边框和横向排版：&lt;/p&gt;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;项目&lt;/th&gt;&lt;th&gt;说明&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;标题&lt;/td&gt;&lt;td&gt;是否正常显示在文章页顶部&lt;/td&gt;&lt;td&gt;已覆盖&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;摘要&lt;/td&gt;&lt;td&gt;是否可用于首页卡片描述&lt;/td&gt;&lt;td&gt;已覆盖&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;代码块&lt;/td&gt;&lt;td&gt;是否具备可读性和层次感&lt;/td&gt;&lt;td&gt;已覆盖&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;表格&lt;/td&gt;&lt;td&gt;是否支持基础信息整理&lt;/td&gt;&lt;td&gt;已覆盖&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;\n&lt;h2 id=\&quot;图片占位说明\&quot;&gt;图片占位说明&lt;/h2&gt;\n&lt;p&gt;当前文章没有设置封面图，因此文章顶部不会展示 cover。这样也能顺便验证“无封面文章”的默认表现是否自然。&lt;/p&gt;\n&lt;p&gt;如果后续需要测试图片内容，可以在正文里补充标准 Markdown 图片，例如：&lt;/p&gt;\n&lt;pre class=\&quot;astro-code one-dark-pro\&quot; style=\&quot;background-color:#282c34;color:#abb2bf; overflow-x: auto;\&quot; tabindex=\&quot;0\&quot; data-language=\&quot;md\&quot;&gt;&lt;code&gt;&lt;span class=\&quot;line\&quot;&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;![&lt;/span&gt;&lt;span style=\&quot;color:#61AFEF\&quot;&gt;示例图片&lt;/span&gt;&lt;span style=\&quot;color:#ABB2BF\&quot;&gt;]&lt;/span&gt;&lt;span style=\&quot;color:#E06C75\&quot;&gt;(&lt;/span&gt;&lt;span style=\&quot;color:#C678DD;text-decoration:underline\&quot;&gt;https://example.com/demo-image.jpg&lt;/span&gt;&lt;span style=\&quot;color:#E06C75\&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;\n&lt;h2 id=\&quot;数学公式示例\&quot;&gt;数学公式示例&lt;/h2&gt;\n&lt;p&gt;如果站点已经启用数学渲染，那么下面的内容应该能够正常显示：&lt;/p&gt;\n&lt;p&gt;行内公式：&lt;span class=\&quot;katex\&quot;&gt;&lt;span class=\&quot;katex-mathml\&quot;&gt;&lt;math xmlns=\&quot;http://www.w3.org/1998/Math/MathML\&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msup&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;b&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;c&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;/mrow&gt;&lt;annotation encoding=\&quot;application/x-tex\&quot;&gt;a^2 + b^2 = c^2&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=\&quot;katex-html\&quot; aria-hidden=\&quot;true\&quot;&gt;&lt;span class=\&quot;base\&quot;&gt;&lt;span class=\&quot;strut\&quot; style=\&quot;height:0.8974em;vertical-align:-0.0833em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mord\&quot;&gt;&lt;span class=\&quot;mord mathnormal\&quot;&gt;a&lt;/span&gt;&lt;span class=\&quot;msupsub\&quot;&gt;&lt;span class=\&quot;vlist-t\&quot;&gt;&lt;span class=\&quot;vlist-r\&quot;&gt;&lt;span class=\&quot;vlist\&quot; style=\&quot;height:0.8141em;\&quot;&gt;&lt;span style=\&quot;top:-3.063em;margin-right:0.05em;\&quot;&gt;&lt;span class=\&quot;pstrut\&quot; style=\&quot;height:2.7em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;sizing reset-size6 size3 mtight\&quot;&gt;&lt;span class=\&quot;mord mtight\&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;mspace\&quot; style=\&quot;margin-right:0.2222em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mbin\&quot;&gt;+&lt;/span&gt;&lt;span class=\&quot;mspace\&quot; style=\&quot;margin-right:0.2222em;\&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;base\&quot;&gt;&lt;span class=\&quot;strut\&quot; style=\&quot;height:0.8141em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mord\&quot;&gt;&lt;span class=\&quot;mord mathnormal\&quot;&gt;b&lt;/span&gt;&lt;span class=\&quot;msupsub\&quot;&gt;&lt;span class=\&quot;vlist-t\&quot;&gt;&lt;span class=\&quot;vlist-r\&quot;&gt;&lt;span class=\&quot;vlist\&quot; style=\&quot;height:0.8141em;\&quot;&gt;&lt;span style=\&quot;top:-3.063em;margin-right:0.05em;\&quot;&gt;&lt;span class=\&quot;pstrut\&quot; style=\&quot;height:2.7em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;sizing reset-size6 size3 mtight\&quot;&gt;&lt;span class=\&quot;mord mtight\&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;mspace\&quot; style=\&quot;margin-right:0.2778em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mrel\&quot;&gt;=&lt;/span&gt;&lt;span class=\&quot;mspace\&quot; style=\&quot;margin-right:0.2778em;\&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;base\&quot;&gt;&lt;span class=\&quot;strut\&quot; style=\&quot;height:0.8141em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mord\&quot;&gt;&lt;span class=\&quot;mord mathnormal\&quot;&gt;c&lt;/span&gt;&lt;span class=\&quot;msupsub\&quot;&gt;&lt;span class=\&quot;vlist-t\&quot;&gt;&lt;span class=\&quot;vlist-r\&quot;&gt;&lt;span class=\&quot;vlist\&quot; style=\&quot;height:0.8141em;\&quot;&gt;&lt;span style=\&quot;top:-3.063em;margin-right:0.05em;\&quot;&gt;&lt;span class=\&quot;pstrut\&quot; style=\&quot;height:2.7em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;sizing reset-size6 size3 mtight\&quot;&gt;&lt;span class=\&quot;mord mtight\&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;\n&lt;p&gt;块级公式：&lt;/p&gt;\n&lt;span class=\&quot;katex-display\&quot;&gt;&lt;span class=\&quot;katex\&quot;&gt;&lt;span class=\&quot;katex-mathml\&quot;&gt;&lt;math xmlns=\&quot;http://www.w3.org/1998/Math/MathML\&quot; display=\&quot;block\&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;munderover&gt;&lt;mo&gt;∑&lt;/mo&gt;&lt;mrow&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;/mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/munderover&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mfrac&gt;&lt;mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=\&quot;false\&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;+&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo stretchy=\&quot;false\&quot;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/mfrac&gt;&lt;/mrow&gt;&lt;annotation encoding=\&quot;application/x-tex\&quot;&gt;\\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=\&quot;katex-html\&quot; aria-hidden=\&quot;true\&quot;&gt;&lt;span class=\&quot;base\&quot;&gt;&lt;span class=\&quot;strut\&quot; style=\&quot;height:2.9291em;vertical-align:-1.2777em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mop op-limits\&quot;&gt;&lt;span class=\&quot;vlist-t vlist-t2\&quot;&gt;&lt;span class=\&quot;vlist-r\&quot;&gt;&lt;span class=\&quot;vlist\&quot; style=\&quot;height:1.6514em;\&quot;&gt;&lt;span style=\&quot;top:-1.8723em;margin-left:0em;\&quot;&gt;&lt;span class=\&quot;pstrut\&quot; style=\&quot;height:3.05em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;sizing reset-size6 size3 mtight\&quot;&gt;&lt;span class=\&quot;mord mtight\&quot;&gt;&lt;span class=\&quot;mord mathnormal mtight\&quot;&gt;i&lt;/span&gt;&lt;span class=\&quot;mrel mtight\&quot;&gt;=&lt;/span&gt;&lt;span class=\&quot;mord mtight\&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=\&quot;top:-3.05em;\&quot;&gt;&lt;span class=\&quot;pstrut\&quot; style=\&quot;height:3.05em;\&quot;&gt;&lt;/span&gt;&lt;span&gt;&lt;span class=\&quot;mop op-symbol large-op\&quot;&gt;∑&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=\&quot;top:-4.3em;margin-left:0em;\&quot;&gt;&lt;span class=\&quot;pstrut\&quot; style=\&quot;height:3.05em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;sizing reset-size6 size3 mtight\&quot;&gt;&lt;span class=\&quot;mord mtight\&quot;&gt;&lt;span class=\&quot;mord mathnormal mtight\&quot;&gt;n&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;vlist-s\&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;vlist-r\&quot;&gt;&lt;span class=\&quot;vlist\&quot; style=\&quot;height:1.2777em;\&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;mspace\&quot; style=\&quot;margin-right:0.1667em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mord mathnormal\&quot;&gt;i&lt;/span&gt;&lt;span class=\&quot;mspace\&quot; style=\&quot;margin-right:0.2778em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mrel\&quot;&gt;=&lt;/span&gt;&lt;span class=\&quot;mspace\&quot; style=\&quot;margin-right:0.2778em;\&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;base\&quot;&gt;&lt;span class=\&quot;strut\&quot; style=\&quot;height:2.113em;vertical-align:-0.686em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mord\&quot;&gt;&lt;span class=\&quot;mopen nulldelimiter\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mfrac\&quot;&gt;&lt;span class=\&quot;vlist-t vlist-t2\&quot;&gt;&lt;span class=\&quot;vlist-r\&quot;&gt;&lt;span class=\&quot;vlist\&quot; style=\&quot;height:1.427em;\&quot;&gt;&lt;span style=\&quot;top:-2.314em;\&quot;&gt;&lt;span class=\&quot;pstrut\&quot; style=\&quot;height:3em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mord\&quot;&gt;&lt;span class=\&quot;mord\&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=\&quot;top:-3.23em;\&quot;&gt;&lt;span class=\&quot;pstrut\&quot; style=\&quot;height:3em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;frac-line\&quot; style=\&quot;border-bottom-width:0.04em;\&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=\&quot;top:-3.677em;\&quot;&gt;&lt;span class=\&quot;pstrut\&quot; style=\&quot;height:3em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mord\&quot;&gt;&lt;span class=\&quot;mord mathnormal\&quot;&gt;n&lt;/span&gt;&lt;span class=\&quot;mopen\&quot;&gt;(&lt;/span&gt;&lt;span class=\&quot;mord mathnormal\&quot;&gt;n&lt;/span&gt;&lt;span class=\&quot;mspace\&quot; style=\&quot;margin-right:0.2222em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mbin\&quot;&gt;+&lt;/span&gt;&lt;span class=\&quot;mspace\&quot; style=\&quot;margin-right:0.2222em;\&quot;&gt;&lt;/span&gt;&lt;span class=\&quot;mord\&quot;&gt;1&lt;/span&gt;&lt;span class=\&quot;mclose\&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;vlist-s\&quot;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;vlist-r\&quot;&gt;&lt;span class=\&quot;vlist\&quot; style=\&quot;height:0.686em;\&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=\&quot;mclose nulldelimiter\&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;\n&lt;p&gt;这部分主要用于检查公式字体、间距以及在窄屏下的显示效果。&lt;/p&gt;\n&lt;h2 id=\&quot;结尾总结\&quot;&gt;结尾总结&lt;/h2&gt;\n&lt;p&gt;这篇测试文章本身没有复杂主题，但它覆盖了一个博客在正式上线前最常见的内容展示场景。&lt;/p&gt;\n&lt;p&gt;如果你现在能在首页看到它、能在详情页正常阅读它、能在归档页通过分类找到它，那么当前博客的基础发布链路就已经跑通了。&lt;/p&gt;&quot;],&quot;metadata&quot;:[0,{&quot;headings&quot;:[1,[[0,{&quot;depth&quot;:[0,2],&quot;slug&quot;:[0,&quot;文章目标&quot;],&quot;text&quot;:[0,&quot;文章目标&quot;]}],[0,{&quot;depth&quot;:[0,2],&quot;slug&quot;:[0,&quot;基础排版示例&quot;],&quot;text&quot;:[0,&quot;基础排版示例&quot;]}],[0,{&quot;depth&quot;:[0,2],&quot;slug&quot;:[0,&quot;列表与结构化内容&quot;],&quot;text&quot;:[0,&quot;列表与结构化内容&quot;]}],[0,{&quot;depth&quot;:[0,3],&quot;slug&quot;:[0,&quot;无序列表&quot;],&quot;text&quot;:[0,&quot;无序列表&quot;]}],[0,{&quot;depth&quot;:[0,3],&quot;slug&quot;:[0,&quot;有序列表&quot;],&quot;text&quot;:[0,&quot;有序列表&quot;]}],[0,{&quot;depth&quot;:[0,2],&quot;slug&quot;:[0,&quot;引用示例&quot;],&quot;text&quot;:[0,&quot;引用示例&quot;]}],[0,{&quot;depth&quot;:[0,2],&quot;slug&quot;:[0,&quot;代码示例&quot;],&quot;text&quot;:[0,&quot;代码示例&quot;]}],[0,{&quot;depth&quot;:[0,2],&quot;slug&quot;:[0,&quot;表格示例&quot;],&quot;text&quot;:[0,&quot;表格示例&quot;]}],[0,{&quot;depth&quot;:[0,2],&quot;slug&quot;:[0,&quot;图片占位说明&quot;],&quot;text&quot;:[0,&quot;图片占位说明&quot;]}],[0,{&quot;depth&quot;:[0,2],&quot;slug&quot;:[0,&quot;数学公式示例&quot;],&quot;text&quot;:[0,&quot;数学公式示例&quot;]}],[0,{&quot;depth&quot;:[0,2],&quot;slug&quot;:[0,&quot;结尾总结&quot;],&quot;text&quot;:[0,&quot;结尾总结&quot;]}]]],&quot;localImagePaths&quot;:[1,[]],&quot;remoteImagePaths&quot;:[1,[]],&quot;frontmatter&quot;:[0,{&quot;title&quot;:[0,&quot;测试文章&quot;],&quot;pubDate&quot;:[3,&quot;2026-04-10T06:58:00.000Z&quot;],&quot;description&quot;:[0,&quot;一篇用于验证博客排版、内容渲染与阅读体验的综合测试文章。&quot;],&quot;image&quot;:[0,&quot;&quot;],&quot;draft&quot;:[0,false],&quot;slugId&quot;:[0,&quot;test-article&quot;],&quot;category&quot;:[0,&quot;测试&quot;],&quot;minutes&quot;:[0,5],&quot;words&quot;:[0,909]}],&quot;imagePaths&quot;:[1,[]]}]}],&quot;collection&quot;:[0,&quot;blog&quot;],&quot;isFallback&quot;:[0,true]}]]],&quot;currentLang&quot;:[0,&quot;en&quot;],&quot;defaultLocale&quot;:[0,&quot;zh-cn&quot;]}" ssr client="only" opts="{&quot;name&quot;:&quot;ArchivePanel&quot;,&quot;value&quot;:&quot;svelte&quot;}"></astro-island> <div id="fabMenu" class="fixed bottom-[5vh] lg:bottom-[13.5vh] right-[7vw] lg:left-[var(--toc-offset-left)] w-10 h-10 z-[1000] transition-opacity duration-300 opacity-0 pointer-events-none" data-scroll-distance="100"> <div id="menuItems" class="absolute bottom-full left-0 mb-3 flex flex-col items-center gap-3 transition-all duration-300 ease-out translate-y-10 opacity-0 pointer-events-none [.is-active_&]:translate-y-0 [.is-active_&]:opacity-100 [.is-active_&]:pointer-events-auto"> <button id="backTop" title="Back to Top" class="relative w-10 h-10 rounded-full border border-[var(--text-color)]/20 cursor-pointer flex items-center justify-center transition-transform duration-200 active:scale-90 shadow-none backdrop-blur bg-[var(--bg-color)]/20 hover:bg-[var(--button-hover-color)]"> <svg class="absolute -top-[1px] -left-[1px] w-[calc(100%+2px)] h-[calc(100%+2px)] -rotate-90 overflow-visible" viewBox="0 0 40 40"> <circle id="progress-circle" cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="0 119.4" stroke-linecap="round"></circle> </svg> <svg width="0.75em" height="1em" class="relative z-10 text-lg text-[var(--text-color)]" data-icon="fa6-solid:arrow-up">   <symbol id="ai:fa6-solid:arrow-up" viewBox="0 0 384 512"><path fill="currentColor" d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.3l105.4 105.3c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></symbol><use href="#ai:fa6-solid:arrow-up"></use>  </svg> </button>  <button id="backBottom" title="Back to Bottom" class="w-10 h-10 rounded-full border border-[var(--text-color)]/20 cursor-pointer flex items-center justify-center transition-transform duration-200 active:scale-90 shadow-none backdrop-blur bg-[var(--bg-color)]/20 hover:bg-[var(--button-hover-color)]"> <svg width="0.75em" height="1em" class="text-lg text-[var(--text-color)]" data-icon="fa6-solid:arrow-down">   <symbol id="ai:fa6-solid:arrow-down" viewBox="0 0 384 512"><path fill="currentColor" d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></symbol><use href="#ai:fa6-solid:arrow-down"></use>  </svg> </button>  </div> <button id="menuTrigger" title="Menu" class="w-full h-full rounded-full border border-[var(--text-color)]/20 cursor-pointer flex items-center justify-center transition-all duration-300 shadow-none backdrop-blur bg-[var(--bg-color)]/20 active:scale-95 hover:bg-[var(--button-hover-color)]"> <svg width="0.88em" height="1em" class="absolute text-lg text-[var(--text-color)] transition-all duration-300 opacity-100 rotate-0 [.is-active_&#38;]:opacity-0 [.is-active_&#38;]:rotate-90" data-icon="fa6-solid:ellipsis">   <symbol id="ai:fa6-solid:ellipsis" viewBox="0 0 448 512"><path fill="currentColor" d="M8 256a56 56 0 1 1 112 0a56 56 0 1 1-112 0m160 0a56 56 0 1 1 112 0a56 56 0 1 1-112 0m216-56a56 56 0 1 1 0 112a56 56 0 1 1 0-112"/></symbol><use href="#ai:fa6-solid:ellipsis"></use>  </svg> <svg width="0.75em" height="1em" viewBox="0 0 384 512" class="absolute text-lg text-[var(--text-color)] transition-all duration-300 opacity-0 -rotate-90 [.is-active_&#38;]:opacity-100 [.is-active_&#38;]:rotate-0" data-icon="fa6-solid:xmark">   <use href="#ai:fa6-solid:xmark"></use>  </svg> </button>  </div> <script>
+function initFabMenu() {
+  const container = document.getElementById('fabMenu');
+  const trigger = document.getElementById('menuTrigger');
+  const backTop = document.getElementById('backTop');
+  const backBottom = document.getElementById('backBottom');
+  const backComment = document.getElementById('backComment');
+  const progressCircle = document.getElementById('progress-circle');
+  const tocTrigger = document.getElementById('tocTrigger');
+  const closeToc = document.getElementById('closeToc');
+  const tocLinks = document.querySelectorAll('.toc-link');
+  
+  if (!container || !trigger) return;
+
+  const threshold = parseInt(container.dataset.scrollDistance) || 100;
+  let isTocOpen = false;
+  let scrollPosOnTocOpen = 0;
+
+  const handleScroll = () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    
+    // 控制 FAB 整体显示/隐藏
+    if (scrollTop > threshold) {
+      container.classList.remove('opacity-0', 'pointer-events-none');
+      container.classList.add('opacity-100', 'pointer-events-auto');
+    } else {
+      container.classList.add('opacity-0', 'pointer-events-none');
+      container.classList.remove('opacity-100', 'pointer-events-auto', 'is-active', 'toc-active');
+      isTocOpen = false; // 回到顶部时同时关闭目录状态
+    }
+
+    // 滑动页面时平滑关闭目录 (设置 50px 的缓冲阈值，防止误触)
+    if (isTocOpen && Math.abs(scrollTop - scrollPosOnTocOpen) > 50) {
+      isTocOpen = false;
+      container.classList.remove('toc-active');
+    }
+
+    // 更新进度条
+    if (progressCircle && docHeight > 0) {
+      const scrollPercent = Math.min(100, (scrollTop / docHeight) * 100);
+      const circumference = 2 * Math.PI * 20;
+      const offset = circumference - (scrollPercent / 100) * circumference;
+      progressCircle.style.strokeDasharray = `${circumference - offset} ${offset}`;
+    }
+  };
+
+  // 主按钮切换
+  trigger.onclick = (e) => {
+    e.stopPropagation();
+    container.classList.toggle('is-active');
+    // 如果关闭了主菜单，也一并关闭目录
+    if (!container.classList.contains('is-active')) {
+      isTocOpen = false;
+      container.classList.remove('toc-active');
+    }
+  };
+
+  // 目录按钮触发
+  if (tocTrigger) {
+    tocTrigger.onclick = (e) => {
+      e.stopPropagation();
+      isTocOpen = !isTocOpen;
+      container.classList.toggle('toc-active', isTocOpen);
+      // 记录打开目录时的滚动位置
+      if (isTocOpen) {
+        scrollPosOnTocOpen = window.scrollY || document.documentElement.scrollTop;
+      }
+    };
+  }
+
+  // 关闭目录按钮
+  if (closeToc) {
+    closeToc.onclick = (e) => {
+      e.stopPropagation();
+      isTocOpen = false;
+      container.classList.remove('toc-active');
+    };
+  }
+
+tocLinks.forEach(link => {
+    link.onclick = (e) => {
+      e.preventDefault(); // 阻止默认的锚点跳转，以便使用平滑滚动
+      
+      // 点击即时反馈：移除所有高亮，给当前点击的项加上高亮
+      tocLinks.forEach(l => l.classList.remove('is-active'));
+      link.classList.add('is-active');
+
+      const targetId = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        // 考虑到可能有顶部导航栏，预留一点偏移量（可选，比如 60px）
+        const offset = 60; 
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = targetElement.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        
+        // 缩起目录面板
+        isTocOpen = false;
+        container.classList.remove('toc-active');
+      }
+    };
+  });
+
+  // 提取所有正文里的标题元素
+  const headingElements = Array.from(tocLinks)
+    .map(link => document.getElementById(link.getAttribute('href').substring(1)))
+    .filter(Boolean); // 过滤掉不存在的元素
+
+  if (headingElements.length > 0) {
+    // 设置观察器参数：当标题进入视窗顶部向下 10% 到 20% 的区域时触发
+    const observerOptions = {
+      root: null,
+      rootMargin: '-10% 0px -80% 0px', 
+      threshold: 0
+    };
+
+    const tocObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // 清除所有高亮
+          tocLinks.forEach(l => l.classList.remove('is-active'));
+          // 找到当前对应的目录链接并高亮
+          const activeId = entry.target.id;
+          const activeLink = document.querySelector(`.toc-link[href="#${activeId}"]`);
+          if (activeLink) {
+            activeLink.classList.add('is-active');
+            // activeLink.scrollIntoView({ block: 'nearest' });
+          }
+        }
+      });
+    }, observerOptions);
+
+    // 开始观察所有标题
+    headingElements.forEach(el => tocObserver.observe(el));
+  }
+
+  // 回到顶部
+  if (backTop) {
+    backTop.onclick = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      container.classList.remove('is-active', 'toc-active');
+      isTocOpen = false;
+    };
+  }
+
+  // 回到底部
+  if (backBottom) {
+    backBottom.onclick = () => {
+      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+      container.classList.remove('is-active', 'toc-active');
+      isTocOpen = false;
+    };
+  }
+
+  // 回到评论区
+  if (backComment) {
+    backComment.onclick = () => {
+      const comments = document.getElementById('comments');
+      comments.scrollIntoView({ behavior: 'smooth' });
+      container.classList.remove('is-active', 'toc-active');
+      isTocOpen = false;
+    };
+  }
+
+  // 点击外部关闭所有展开项
+  document.addEventListener('click', (e) => {
+    if (!container.contains(e.target)) {
+      container.classList.remove('is-active', 'toc-active');
+      isTocOpen = false;
+    }
+  });
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+}
+
+document.addEventListener('astro:page-load', initFabMenu);
+</script>   </main> <!-- footer --><footer class="flex flex-col md:flex-row md:justify-between items-start md:items-center py-10 text-[var(--text-color-70)] max-w-[var(--header-width)] mx-auto w-full" data-astro-cid-sz7xmlte> <div class="mb-1 md:mb-0" data-astro-cid-sz7xmlte>
+© 2024 - 2026 <a class="link-line" target="_self" href="https://www.lishang.fun/" data-astro-cid-sz7xmlte>mclishang</a>.
+</div> <div class="right" data-astro-cid-sz7xmlte> <p data-astro-cid-sz7xmlte>Powered by
+<a target="_blank" href="https://astro.build" title="Astro" class="tooltip-wrapper" data-astro-cid-sz7xmlte><svg width="1em" height="1em" class="inline-block" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:astro">   <symbol id="ai:simple-icons:astro" viewBox="0 0 24 24"><path fill="currentColor" d="M8.358 20.162c-1.186-1.07-1.532-3.316-1.038-4.944c.856 1.026 2.043 1.352 3.272 1.535c1.897.283 3.76.177 5.522-.678c.202-.098.388-.229.608-.36c.166.473.209.95.151 1.437c-.14 1.185-.738 2.1-1.688 2.794c-.38.277-.782.525-1.175.787c-1.205.804-1.531 1.747-1.078 3.119l.044.148a3.16 3.16 0 0 1-1.407-1.188a3.3 3.3 0 0 1-.544-1.815c-.004-.32-.004-.642-.048-.958c-.106-.769-.472-1.113-1.161-1.133c-.707-.02-1.267.411-1.415 1.09c-.012.053-.028.104-.045.165zm-5.961-4.445s3.24-1.575 6.49-1.575l2.451-7.565c.092-.366.36-.614.662-.614s.57.248.662.614l2.45 7.565c3.85 0 6.491 1.575 6.491 1.575L16.088.727C15.93.285 15.663 0 15.303 0H8.697c-.36 0-.615.285-.784.727z"/></symbol><use href="#ai:simple-icons:astro"></use>  </svg></a> <a target="_blank" href="https://svelte.dev/" title="Svelte" class="tooltip-wrapper" data-astro-cid-sz7xmlte><svg width="1em" height="1em" class="inline-block" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:svelte">   <symbol id="ai:simple-icons:svelte" viewBox="0 0 24 24"><path fill="currentColor" d="M10.354 21.125a4.44 4.44 0 0 1-4.765-1.767a4.1 4.1 0 0 1-.703-3.107a4 4 0 0 1 .134-.522l.105-.321l.287.21a7.2 7.2 0 0 0 2.186 1.092l.208.063l-.02.208a1.25 1.25 0 0 0 .226.83a1.34 1.34 0 0 0 1.435.533a1.2 1.2 0 0 0 .343-.15l5.59-3.562a1.16 1.16 0 0 0 .524-.778a1.24 1.24 0 0 0-.211-.937a1.34 1.34 0 0 0-1.435-.533a1.2 1.2 0 0 0-.343.15l-2.133 1.36a4 4 0 0 1-1.135.499a4.44 4.44 0 0 1-4.765-1.766a4.1 4.1 0 0 1-.702-3.108a3.86 3.86 0 0 1 1.742-2.582l5.589-3.563a4 4 0 0 1 1.135-.499a4.44 4.44 0 0 1 4.765 1.767a4.1 4.1 0 0 1 .703 3.107a4 4 0 0 1-.134.522l-.105.321l-.286-.21a7.2 7.2 0 0 0-2.187-1.093l-.208-.063l.02-.207a1.25 1.25 0 0 0-.226-.831a1.34 1.34 0 0 0-1.435-.532a1.2 1.2 0 0 0-.343.15L8.62 9.368a1.16 1.16 0 0 0-.524.778a1.24 1.24 0 0 0 .211.937a1.34 1.34 0 0 0 1.435.533a1.2 1.2 0 0 0 .344-.151l2.132-1.36a4 4 0 0 1 1.135-.498a4.44 4.44 0 0 1 4.765 1.766a4.1 4.1 0 0 1 .702 3.108a3.86 3.86 0 0 1-1.742 2.583l-5.589 3.562a4 4 0 0 1-1.135.499m10.358-17.95C18.484-.015 14.082-.96 10.9 1.068L5.31 4.63a6.4 6.4 0 0 0-2.896 4.295a6.75 6.75 0 0 0 .666 4.336a6.4 6.4 0 0 0-.96 2.396a6.83 6.83 0 0 0 1.168 5.167c2.229 3.19 6.63 4.135 9.812 2.108l5.59-3.562a6.4 6.4 0 0 0 2.896-4.295a6.76 6.76 0 0 0-.665-4.336a6.4 6.4 0 0 0 .958-2.396a6.83 6.83 0 0 0-1.167-5.168"/></symbol><use href="#ai:simple-icons:svelte"></use>  </svg></a> <a target="_blank" href="https://tailwindcss.com/" title="tailwindcss" class="tooltip-wrapper" data-astro-cid-sz7xmlte><svg width="1em" height="1em" class="inline-block" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:tailwindcss">   <symbol id="ai:simple-icons:tailwindcss" viewBox="0 0 24 24"><path fill="currentColor" d="M12.001 4.8q-4.8 0-6 4.8q1.8-2.4 4.2-1.8c.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12q4.8 0 6-4.8q-1.8 2.4-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8m-6 7.2q-4.8 0-6 4.8q1.8-2.4 4.2-1.8c.913.228 1.565.89 2.288 1.624c1.177 1.194 2.538 2.576 5.512 2.576q4.8 0 6-4.8q-1.8 2.4-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12"/></symbol><use href="#ai:simple-icons:tailwindcss"></use>  </svg></a> <a target="_blank" href="https://github.com/Motues/Momo" title="Momo" class="tooltip-wrapper" data-astro-cid-sz7xmlte><svg width="1em" height="1em" class="inline-block" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:github">   <symbol id="ai:simple-icons:github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol><use href="#ai:simple-icons:github"></use>  </svg></a>
+|
+<a href="/rss.xml" target="_self" title="RSS" class="tooltip-wrapper" data-astro-cid-sz7xmlte><svg width="1em" height="1em" class="inline-block" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:rss">   <symbol id="ai:simple-icons:rss" viewBox="0 0 24 24"><path fill="currentColor" d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24zM3.291 17.415a3.3 3.3 0 0 1 3.293 3.295A3.303 3.303 0 0 1 3.283 24C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295M15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91"/></symbol><use href="#ai:simple-icons:rss"></use>  </svg></a> </p> </div> </footer>  <div id="search-modal" class="fixed inset-0 z-[100] opacity-0 pointer-events-none" data-astro-cid-uhsuufxt> <div class="absolute inset-0 modal-backdrop opacity-0" aria-hidden="true" data-astro-cid-uhsuufxt></div> <div class="fixed inset-0 flex items-start justify-center p-4 pt-[25vh]" data-astro-cid-uhsuufxt> <div class="search-modal-content bg-[var(--bg-color)] rounded-xl shadow-xl w-full max-w-2xl border border-[var(--button-border-color)] overflow-hidden scale-80 transition-all duration-300 opacity-0 flex flex-col max-h-[40vh]" data-astro-cid-uhsuufxt> <div class="flex items-center p-4 border-b border-[var(--button-border-color)]" data-astro-cid-uhsuufxt> <svg class="w-5 h-5 text-[var(--text-color-70)] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-astro-cid-uhsuufxt> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" data-astro-cid-uhsuufxt></path> </svg> <input type="text" id="search-input" placeholder="Enter keywords to start searching..." class="w-full bg-transparent border-0 focus:ring-0 focus:outline-none  text-[var(--text-color)]" autofocus data-astro-cid-uhsuufxt> <button id="close-search" class="ml-2 p-2 text-[var(--text-color-70)] rounded-lg hover:bg-[var(--button-hover-color)] active:bg-[var(--button-hover-color)]" aria-label="Close Search" data-astro-cid-uhsuufxt> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-astro-cid-uhsuufxt> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" data-astro-cid-uhsuufxt></path> </svg> </button> </div> <div id="search-results" class="overflow-y-auto flex-grow" data-astro-cid-uhsuufxt> <div class="p-8 text-center text-[var(--text-color-70)]" data-astro-cid-uhsuufxt> <p data-astro-cid-uhsuufxt>Enter keywords to start searching</p> </div> </div> </div> </div> </div> <script type="module">function o(){const n=document.getElementById("search-button"),e=document.getElementById("search-modal"),i=document.getElementById("close-search"),d=document.getElementById("search-input"),s=e?.firstElementChild,t=e?.querySelector(".search-modal-content");if(!n||!e)return;const l=()=>{e.classList.remove("opacity-0","pointer-events-none"),e.offsetHeight,requestAnimationFrame(()=>{s?.classList.remove("opacity-0"),s?.classList.add("show"),t?.classList.remove("scale-80","opacity-0"),t?.classList.add("scale-100")}),setTimeout(()=>d?.focus(),300)},a=()=>{requestAnimationFrame(()=>{s?.classList.add("opacity-0"),s?.classList.remove("show"),t?.classList.add("scale-80","opacity-0"),t?.classList.remove("scale-100")}),setTimeout(()=>{e.classList.add("opacity-0","pointer-events-none")},300)};n.addEventListener("click",l),i?.addEventListener("click",a),e.addEventListener("click",c=>{t?.contains(c.target)||a()}),document.addEventListener("keydown",c=>{c.key==="Escape"&&!e.classList.contains("opacity-0")&&a()})}document.addEventListener("DOMContentLoaded",o);document.addEventListener("astro:after-swap",o);</script>  <script>(function(){const fakeResult = [{"url":"/","meta":{"title":"This Is a Fake Search Result"},"excerpt":"Because the search cannot work in the <mark>dev</mark> environment."},{"url":"/","meta":{"title":"If You Want to Test the Search"},"excerpt":"Try running <mark>pnpm build && pnpm preview</mark> instead."}];
+const translations = {"placeholder":"Enter keywords to start searching","error":"Search error occurred. Please try again later.","noresult":"No results found."};
+
+function initPagefindSearch() {
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  
+  if (!searchInput || !searchResults) return;
+
+  // 避免重复绑定
+  if (searchInput.dataset.bound === 'true') return;
+  searchInput.dataset.bound = 'true';
+
+  let searchTimeout;
+
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.trim();
+    clearTimeout(searchTimeout);
+    
+    searchTimeout = setTimeout(() => {
+      if (query.length > 0) {
+        performSearch(query);
+      } else {
+        // 清空或显示默认状态
+        searchResults.innerHTML = `
+          <div class="p-8 text-center text-[var(--text-color-70)]">
+            <p>${translations.placeholder}</p>
+          </div>
+        `;
+      }
+    }, 300);
+  });
+}
+
+async function performSearch(query) {
+  const searchResults = document.getElementById('search-results');
+  const isDev = !window.pagefind;
+
+  if (isDev) {
+    displayResults(fakeResult);
+  } else if (window.pagefind) {
+    await window.pagefind.destroy();
+    await window.pagefind.init();
+    // console.log('Pagefind is initialized');
+    try {
+      const searchResultsData = await window.pagefind.search(query);
+      const results = [];
+
+      for (const result of searchResultsData.results) {
+        const data = await result.data();
+        results.push({
+          url: data.url,
+          meta: { title: data.meta.title },
+          excerpt: data.excerpt
+        });
+      }
+
+      displayResults(results);
+    } catch (error) {
+      console.error('Search failed:', error);
+      searchResults.innerHTML = `
+        <div class="p-8 text-center text-red-500">
+          <p>${translations.error}</p>
+        </div>
+      `;
+    }
+  } else {
+    console.log('Pagefind is not available');
+    searchResults.innerHTML = `
+      <div class="p-8 text-center text-[var(--text-color-70)]">
+        <p>搜索功能暂时不可用</p>
+      </div>
+    `;
+  }
+}
+
+function displayResults(results) {
+  const searchResults = document.getElementById('search-results');
+  if (!searchResults) return;
+
+  if (results.length === 0) {
+    searchResults.innerHTML = `
+      <div class="p-8 text-center text-[var(--text-color-70)]">
+        <p>${translations.noresult}</p>
+      </div>
+    `;
+    return;
+  }
+
+  searchResults.innerHTML = results.map(result => `
+    <div class="p-4 border-b border-[var(--button-border-color)] hover:bg-[var(--button-hover-color)]">
+      <a href="${result.url}" class="block no-underline">
+        <h3 class="text-lg font-semibold text-[var(--text-color)] mb-2">${result.meta.title}</h3>
+        <p class="text-[var(--text-color-70)] text-sm">${result.excerpt}</p>
+      </a>
+    </div>
+  `).join('');
+}
+
+// ========== 初始化逻辑 ==========
+document.addEventListener('pagefindready', () => {
+  // console.log('Pagefind is ready');
+});
+document.addEventListener('pagefindloaderror', () => {
+  console.log('Pagefind failed to load, search functionality will not work');
+});
+
+document.addEventListener('DOMContentLoaded', initPagefindSearch);
+document.addEventListener('astro:after-swap', initPagefindSearch);
+})();</script>  </div>  <script>
+        let loaderTimeout;
+
+        // 1. 开始准备跳转
+        document.addEventListener('astro:before-preparation', () => {
+            loaderTimeout = setTimeout(() => {
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.style.display = 'flex';
+            }, 500); 
+        });
+
+        // 2. 页面内容交换完成（DOM 已更新）
+        document.addEventListener('astro:after-swap', () => {
+            clearTimeout(loaderTimeout);
+            
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.style.display = 'none';
+        });
+
+        // 3. 兜底方案：页面完全加载完成（包括资源）
+        document.addEventListener('astro:page-load', () => {
+            clearTimeout(loaderTimeout);
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.style.display = 'none';
+        });
+        </script> </body> </html>  <script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.5i-6mVVK.js"></script>

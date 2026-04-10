@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="en" class="h-full"> <head><script>
+        (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        let theme;
+        if ( savedTheme === 'system') {
+          theme = systemTheme;
+        } else {
+          theme = savedTheme || 'light';
+        }
+        localStorage.setItem('theme', savedTheme || theme);
+        document.documentElement.setAttribute('data-theme', theme);
+
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        })();
+    </script><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="日常记录"><meta name="author" content="mclishang"><link rel="alternate" type="application/rss+xml" title="MCLISHANG" href="https://www.lishang.fun/rss.xml"><link rel="icon" href="/favicon/favicon.ico" type="image/x-icon"><link rel="stylesheet" href="https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;700&display=swap"><link rel="stylesheet" href="https://fonts.font.im/css2?family=EB+Garamond&display=swap"><title>Friends - MCLISHANG</title><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.U4jOVs4w.js"></script><link rel="stylesheet" href="/_astro/_page_.Ci7VY_Qp.css">
+<link rel="stylesheet" href="/_astro/_page_.SP8wi-yF.css">
+<link rel="stylesheet" href="/_astro/about.D97EKPyj.css"></head> <body class="h-full bg-[var(--bg-color)]"> <div id="loading-overlay" aria-hidden="true"> <div class="spinner"></div> </div>  <div class="flex flex-col min-h-screen"> <div> <!-- header --><div id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out md:relative md:translate-y-0"> <div class="flex items-center pt-2 text-[var(--text-color)] w-full px-3 sm:px-4 md:py-4 md:max-w-[var(--header-width)] md:px-0 md:mx-auto"> <!-- logo --> <div class="min-w-0 flex-1 pr-2 sm:pr-3 py-2 z-30 header-logo"> <a href="/en/" class="block min-w-0"> <span class="block truncate text-xl sm:text-2xl font-bold hover:opacity-60 transition-opacity md:text-3xl">MCLISHANG</span> </a> </div> <!-- tools --> <div class="ml-2 sm:ml-3 flex shrink-0 gap-1 sm:gap-2 py-2 justify-end z-30 min-w-0"> <!-- Search --> <button id="search-button" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 hover:bg-[var(--button-hover-color)] active:scale-90 rounded-lg hover:text-current border border-[var(--button-border-color)] transition-all duration-300" aria-label="Search"> <svg width="1em" height="1em" class="w-4 h-4" data-icon="fa6-solid:magnifying-glass">   <symbol id="ai:fa6-solid:magnifying-glass" viewBox="0 0 512 512"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208M208 352a144 144 0 1 0 0-288a144 144 0 1 0 0 288"/></symbol><use href="#ai:fa6-solid:magnifying-glass"></use>  </svg> </button> <!-- Dark Mode --> <button id="themeToggle" title="Switch Dark Mode" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 hover:bg-[var(--button-hover-color)] rounded-lg hover:text-current active:scale-90 border border-[var(--button-border-color)] transition-all duration-300" data-t-light="Switch to Light Mode" data-t-dark="Switch to Dark Mode" data-t-system="Switch to System Mode" data-astro-cid-dvkcbgz6> <svg width="1em" height="1em" class="moon w-5 h-5" data-astro-cid-dvkcbgz6="true" data-icon="material-symbols:dark-mode-outline-rounded">   <symbol id="ai:material-symbols:dark-mode-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21q-3.775 0-6.387-2.613T3 12q0-3.45 2.25-5.988T11 3.05q.325-.05.575.088t.4.362t.163.525t-.188.575q-.425.65-.638 1.375T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q.775 0 1.538-.225t1.362-.625q.275-.175.563-.162t.512.137q.25.125.388.375t.087.6q-.35 3.45-2.937 5.725T12 21m0-2q2.2 0 3.95-1.213t2.55-3.162q-.5.125-1 .2t-1 .075q-3.075 0-5.238-2.163T9.1 7.5q0-.5.075-1t.2-1q-1.95.8-3.163 2.55T5 12q0 2.9 2.05 4.95T12 19m-.25-6.75"/></symbol><use href="#ai:material-symbols:dark-mode-outline-rounded"></use>  </svg> <svg width="1em" height="1em" class="sun w-5 h-5" data-astro-cid-dvkcbgz6="true" data-icon="material-symbols:wb-sunny-outline-rounded">   <symbol id="ai:material-symbols:wb-sunny-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M11 3V2q0-.425.288-.712T12 1t.713.288T13 2v1q0 .425-.288.713T12 4t-.712-.288T11 3m0 19v-1q0-.425.288-.712T12 20t.713.288T13 21v1q0 .425-.288.713T12 23t-.712-.288T11 22m11-9h-1q-.425 0-.712-.288T20 12t.288-.712T21 11h1q.425 0 .713.288T23 12t-.288.713T22 13M3 13H2q-.425 0-.712-.288T1 12t.288-.712T2 11h1q.425 0 .713.288T4 12t-.288.713T3 13m16.75-7.325l-.35.35q-.275.275-.687.275T18 6q-.275-.275-.288-.687t.263-.713l.375-.375q.275-.3.7-.3t.725.3t.288.725t-.313.725M6.025 19.4l-.375.375q-.275.3-.7.3t-.725-.3t-.288-.725t.313-.725l.35-.35q.275-.275.688-.275T6 18q.275.275.288.688t-.263.712m12.3.35l-.35-.35q-.275-.275-.275-.687T18 18q.275-.275.688-.287t.712.262l.375.375q.3.275.3.7t-.3.725t-.725.288t-.725-.313M4.6 6.025l-.375-.375q-.3-.275-.3-.7t.3-.725t.725-.288t.725.313l.35.35q.275.275.275.688T6 6q-.275.275-.687.288T4.6 6.025M12 18q-2.5 0-4.25-1.75T6 12t1.75-4.25T12 6t4.25 1.75T18 12t-1.75 4.25T12 18m0-2q1.675 0 2.838-1.162T16 12t-1.162-2.838T12 8T9.162 9.163T8 12t1.163 2.838T12 16m0-4"/></symbol><use href="#ai:material-symbols:wb-sunny-outline-rounded"></use>  </svg> <svg width="1em" height="1em" class="system w-5 h-5" data-astro-cid-dvkcbgz6="true" data-icon="material-symbols:radio-button-partial-outline">   <symbol id="ai:material-symbols:radio-button-partial-outline" viewBox="0 0 24 24"><path fill="currentColor" d="M12 17V7Q9.925 7 8.463 8.463T7 12t1.463 3.538T12 17m0 5q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8"/></symbol><use href="#ai:material-symbols:radio-button-partial-outline"></use>  </svg> </button> <script>
+
+if (typeof window !== 'undefined') {
+  
+  let toastTimer = null;
+
+  function initThemeToggle() {
+    const htmlRoot = document.querySelector('html');
+    const themeToggle = document.getElementById('themeToggle');
+
+    const getTheme = () => {
+      const localStorageTheme = localStorage?.getItem("theme") ?? '';
+      if (['dark', 'light', 'system'].includes(localStorageTheme)) {
+        return localStorageTheme;
+      }
+      return 'system';
+    };
+
+    // 从 DOM 属性实时获取翻译
+    const translations = {
+      light: themeToggle.dataset.tLight,
+      dark: themeToggle.dataset.tDark,
+      system: themeToggle.dataset.tSystem
+    };
+
+    function showThemeToast(themeName) {
+      let toast = document.getElementById('theme-toast') || (() => {
+        const t = document.createElement('div');
+        t.id = 'theme-toast';
+        document.body.appendChild(t);
+        return t;
+      })();
+
+      toast.textContent = translations[themeName] || translations['system'];
+      
+      clearTimeout(toastTimer);
+      toast.classList.remove('show');
+      void toast.offsetWidth; 
+      toast.classList.add('show');
+
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    const setTheme = (themeSet, isFirstLoad = false) => { 
+      if (themeSet === 'dark') {
+        htmlRoot.setAttribute('data-theme', 'dark');
+        htmlRoot.classList.remove('system-theme');
+      } else if (themeSet === 'light') {
+        htmlRoot.removeAttribute('data-theme');
+        htmlRoot.classList.remove('system-theme');
+      } else {
+        htmlRoot.classList.add('system-theme');
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          htmlRoot.setAttribute('data-theme', 'dark');
+        } else {
+          htmlRoot.removeAttribute('data-theme');
+        }
+      }
+      window.localStorage.setItem('theme', themeSet);
+
+      // --- 新增：如果不是页面初次加载，则显示弹窗 ---
+      if (!isFirstLoad) {
+        showThemeToast(themeSet);
+      }
+    };
+
+    // 系统主题变化监听器
+    const handleSystemThemeChange = (e) => {
+      if (htmlRoot.classList.contains('system-theme')) {
+        if (e.matches) {
+          htmlRoot.setAttribute('data-theme', 'dark');
+        } else {
+          htmlRoot.removeAttribute('data-theme');
+        }
+      }
+    };
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.removeEventListener?.('change', handleSystemThemeChange);
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
+
+    const handleToggleClick = () => {
+      const currentTheme = localStorage.getItem('theme') || 'system';
+      let nextTheme;
+      if (currentTheme === 'light') nextTheme = 'dark';
+      else if (currentTheme === 'dark') nextTheme = 'system';
+      else nextTheme = 'light';
+      setTheme(nextTheme, false);
+    };
+
+    themeToggle?.removeEventListener('click', handleToggleClick);
+    themeToggle?.addEventListener('click', handleToggleClick);
+
+    setTheme(getTheme(), true);
+  }
+
+  document.addEventListener('astro:page-load', initThemeToggle);
+  document.addEventListener('astro:after-swap', initThemeToggle);
+}
+</script>  <!-- RSS --> <!-- <a href="/rss.xml" target="_blank" class="flex items-center justify-center w-10 h-10 hover:bg-[var(--button-hover-color)] active:scale-90 rounded-lg hover:text-current border border-[var(--button-border-color)] transition-all duration-300">
+            <Icon name="simple-icons:rss" class="w-4 h-4" />
+        </a> --> <!-- Language Switcher --> <div class="relative"> <button id="language-button" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 hover:bg-[var(--button-hover-color)] active:scale-90 rounded-lg hover:text-current border border-[var(--button-border-color)] transition-all duration-300" aria-label="Language Switcher"> <svg width="1em" height="1em" class="w-4 h-4" data-icon="fa6-solid:globe">   <symbol id="ai:fa6-solid:globe" viewBox="0 0 512 512"><path fill="currentColor" d="M352 256c0 22.2-1.2 43.6-3.3 64H163.4c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.3c2.2 20.4 3.3 41.8 3.3 64m28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64m112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7m-209 0H18.6c30-74.1 93.6-130.9 172-151.6c-25.5 34.2-45.3 87.7-55.3 151.6M8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64m186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5c-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6c-78.4-20.7-142-77.5-172-151.6zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6h116.7z"/></symbol><use href="#ai:fa6-solid:globe"></use>  </svg> </button> <!-- Language Dropdown Menu --> <div id="language-menu" class="hidden absolute right-0 mt-2 w-30 bg-[var(--bg-color)] border border-[var(--button-border-color)] rounded-lg shadow-lg z-50"> <div class="py-1 text-right"> <!-- 中文链接 --> <a href="/friends/" class="block mx-2 my-1 p-2 text-sm rounded hover:bg-[var(--button-hover-color)]"> 
+简体中文
+</a> <!-- 英文链接 --> <a href="/en/friends/" class="block mx-2 my-1 p-2 text-sm rounded bg-[var(--button-hover-color)]"> <svg width="1em" height="1em" class="w-2 h-2 inline mr-2" data-icon="fa6-solid:circle">   <symbol id="ai:fa6-solid:circle" viewBox="0 0 512 512"><path fill="currentColor" d="M256 512a256 256 0 1 0 0-512a256 256 0 1 0 0 512"/></symbol><use href="#ai:fa6-solid:circle"></use>  </svg>
+English
+</a> </div> </div> </div> <div class="relative md:hidden"> <!-- Mobile Menu --> <button id="mobile-menu-button" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 hover:bg-[var(--button-hover-color)] active:scale-90 rounded-lg hover:text-current border border-[var(--button-border-color)] transition-all duration-300" aria-label="Mobile Menu"> <svg width="0.88em" height="1em" class="w-4 h-4 sm:w-5 sm:h-5" data-icon="fa6-solid:align-justify">   <symbol id="ai:fa6-solid:align-justify" viewBox="0 0 448 512"><path fill="currentColor" d="M448 64c0-17.7-14.3-32-32-32H32C14.3 32 0 46.3 0 64s14.3 32 32 32h384c17.7 0 32-14.3 32-32m0 256c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h384c17.7 0 32-14.3 32-32M0 192c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32s-14.3-32-32-32H32c-17.7 0-32 14.3-32 32m448 256c0-17.7-14.3-32-32-32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h384c17.7 0 32-14.3 32-32"/></symbol><use href="#ai:fa6-solid:align-justify"></use>  </svg> </button> </div> </div> </div> </div> <!-- nav_bar --> <div id="nav-bar" class="hidden md:flex absolute left-1/2 top-0 transform -translate-x-1/2  justify-center items-center text-lg font-bold my-5 z-100"> <div id="nav-bar-list" class="transition relative z-10 flex max-w-max flex-1 items-center justify-center rounded-outer p-2 backdrop-blur rounded-xl bg-[color:var(--bg-color)]/20"> <!-- 首页链接 --> <a href="/en/" class="transition-colors rounded-lg px-3 py-1 mx-1 hover:text-current hover:bg-[var(--button-hover-color)]"> Home </a> <!-- 归档链接 --> <a href="/en/archives/" class="transition-colors rounded-lg px-3 py-1 mx-1 hover:text-current hover:bg-[var(--button-hover-color)]"> Archive </a> <!-- 关于链接 --> <a href="/en/about/" class="transition-colors rounded-lg px-3 py-1 mx-1 hover:text-current hover:bg-[var(--button-hover-color)]"> About </a> <!-- 友链链接 --> <a href="/en/friends/" class="transition-colors rounded-lg px-3 py-1 mx-1 hover:text-current bg-[var(--button-hover-color)]"> Friends </a> </div> </div> <!-- Mobile Menu --> <div id="mobile-menu-container" class="fixed inset-0 z-[100] hidden"> <div id="mobile-menu-overlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300 ease-in-out"></div> <div id="mobile-menu-drawer" class="absolute top-0 left-0 bottom-0 w-[70%] max-w-[300px] bg-[var(--bg-color)] shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col"> <div class="flex items-center justify-between p-5 border-b border-[var(--button-border-color)]"> <span class="text-xl font-bold header-logo">MCLISHANG</span> <button id="mobile-menu-close" class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[var(--button-hover-color)] transition-colors"> <svg width="0.75em" height="1em" class="w-5 h-5" data-icon="fa6-solid:xmark">   <symbol id="ai:fa6-solid:xmark" viewBox="0 0 384 512"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7L86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256L41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3l105.4 105.3c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256z"/></symbol><use href="#ai:fa6-solid:xmark"></use>  </svg> </button> </div> <nav class="flex flex-col py-4 px-2"> <a href="/en/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--button-hover-color)] hover:text-[var(--link-color)] transition-colors active:bg-[var(--button-hover-color)] active:text-[var(--link-color)]"> <svg width="1.13em" height="1em" class="w-4 h-4 opacity-70" data-icon="fa6-solid:house">   <symbol id="ai:fa6-solid:house" viewBox="0 0 576 512"><path fill="currentColor" d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1v16.2c0 22.1-17.9 40-40 40h-16c-1.1 0-2.2 0-3.3-.1c-1.4.1-2.8.1-4.2.1L416 512h-24c-22.1 0-40-17.9-40-40v-88c0-17.7-14.3-32-32-32h-64c-17.7 0-32 14.3-32 32v88c0 22.1-17.9 40-40 40h-55.9c-1.5 0-3-.1-4.5-.2c-1.2.1-2.4.2-3.6.2h-16c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9.1-2.8v-69.7h-32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7l255.4 224.5c8 7 12 15 11 24"/></symbol><use href="#ai:fa6-solid:house"></use>  </svg> <span>Home</span> </a> <a href="/en/archives/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--button-hover-color)] hover:text-[var(--link-color)] transition-colors active:bg-[var(--button-hover-color)] active:text-[var(--link-color)]"> <svg width="0.88em" height="1em" class="w-4 h-4 opacity-70" data-icon="fa6-solid:book-bookmark">   <symbol id="ai:fa6-solid:book-bookmark" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 43 43 0 96 0h96v190.7c0 13.4 15.5 20.9 26 12.5l54-43.2l54 43.2c10.5 8.4 26 .9 26-12.5V0h64c17.7 0 32 14.3 32 32v320c0 17.7-14.3 32-32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-53 0-96-43-96-96zm64 320c0 17.7 14.3 32 32 32h256v-64H96c-17.7 0-32 14.3-32 32"/></symbol><use href="#ai:fa6-solid:book-bookmark"></use>  </svg> <span>Archive</span> </a> <a href="/en/about/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--button-hover-color)] hover:text-[var(--link-color)] transition-colors active:bg-[var(--button-hover-color)] active:text-[var(--link-color)]"> <svg width="0.88em" height="1em" class="w-4 h-4 opacity-70" data-icon="fa6-solid:user">   <symbol id="ai:fa6-solid:user" viewBox="0 0 448 512"><path fill="currentColor" d="M224 256a128 128 0 1 0 0-256a128 128 0 1 0 0 256m-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512h388.6c16.4 0 29.7-13.3 29.7-29.7c0-98.5-79.8-178.3-178.3-178.3z"/></symbol><use href="#ai:fa6-solid:user"></use>  </svg> <span>About</span> </a> <a href="/en/friends/" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[var(--button-hover-color)] hover:text-[var(--link-color)] transition-colors active:bg-[var(--button-hover-color)] active:text-[var(--link-color)]"> <svg width="1.25em" height="1em" class="w-4 h-4 opacity-70" data-icon="fa6-solid:link">   <symbol id="ai:fa6-solid:link" viewBox="0 0 640 512"><path fill="currentColor" d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5l112.2-112.3c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0z"/></symbol><use href="#ai:fa6-solid:link"></use>  </svg> <span>Friends</span> </a> </nav> <div class="mt-auto p-5 border-t border-[var(--button-border-color)] flex gap-1 text-sm opacity-70"> <!-- <a href={getLocalePath("/", "zh-cn")} class="text-sm opacity-70 active:text-[var(--link-color)]">简体中文</a>
+             <a href={getLocalePath("/", "en")} class="text-sm opacity-70 active:text-[var(--link-color)]">English</a> -->
+© 2024 - 2026 <a class="link-line" target="_self" href="https://www.lishang.fun/">mclishang</a>.
+</div> </div> </div>  <script type="module">function s(){const e=document.getElementById("main-header");if(!e)return;let t=window.scrollY,i=!1;function l(){const n=window.scrollY,r=n-t;window.innerWidth<=MOBILE_HEADER_MAX_WIDTH?n<=50?e.classList.remove("header-hidden"):r>0&&n>100?e.classList.add("header-hidden"):r<0&&e.classList.remove("header-hidden"):e.classList.remove("header-hidden"),t=n,i=!1}function d(){i||(window.requestAnimationFrame(l),i=!0)}window.removeEventListener("scroll",d),window.addEventListener("scroll",d,{passive:!0})}document.addEventListener("astro:page-load",s);</script> <script type="module">function a(){const e=document.getElementById("language-button"),t=document.getElementById("language-menu"),d=document.getElementById("mobile-menu");!e||e.dataset.bound==="true"||(e.dataset.bound="true",e.addEventListener("click",n=>{n.stopPropagation(),d?.classList.add("hidden"),t?.classList.toggle("hidden")}),document.addEventListener("click",n=>{e&&t&&!e.contains(n.target)&&!t.contains(n.target)&&t.classList.add("hidden")}))}document.addEventListener("astro:page-load",a);document.addEventListener("astro:after-swap",a);</script> <script type="module">function r(){const l=document.getElementById("mobile-menu-button"),c=document.getElementById("mobile-menu-close"),n=document.getElementById("mobile-menu-container"),d=document.getElementById("mobile-menu-overlay"),s=document.getElementById("mobile-menu-drawer"),e=document.getElementById("nav-bar"),t=document.getElementById("nav-bar-list");if(!l||!n)return;function i(){n.classList.remove("hidden"),requestAnimationFrame(()=>{d?.classList.add("opacity-100"),s?.classList.remove("-translate-x-full")}),document.body.style.overflow="hidden"}function a(){d?.classList.remove("opacity-100"),s?.classList.add("-translate-x-full"),setTimeout(()=>{n.classList.add("hidden"),document.body.style.overflow=""},300)}l.addEventListener("click",i),c?.addEventListener("click",a),d?.addEventListener("click",a),s?.querySelectorAll("a").forEach(m=>{m.addEventListener("click",a)});let o=!1;window.addEventListener("scroll",()=>{window.scrollY>0&&!o&&e&&t?(e.classList.add("fixed"),t.classList.add("border","border-[var(--button-border-color)]","shadow-[0_4px_12px_var(--shadow-color)]"),o=!0):window.scrollY===0&&o&&e&&t&&(e.classList.remove("fixed"),t.classList.remove("border","border-[var(--button-border-color)]","shadow-[0_4px_12px_var(--shadow-color)]"),o=!1)})}document.addEventListener("DOMContentLoaded",r);document.addEventListener("astro:page-load",r);</script> <script>(function(){const scriptUrl = "/pagefind/pagefind.js";
+
+async function loadAndSearch() {
+  // 1. 如果已经加载过了，直接返回
+  if (window.pagefind && typeof window.pagefind.search === 'function') {
+    return;
+  }
+  
+  if (window.pagefindLoading) return;
+  window.pagefindLoading = true;
+
+  try {
+    // 动态导入脚本
+    const pagefind = await import(scriptUrl);
+    await pagefind.options({ excerptLength: 20 });
+    window.pagefind = pagefind;
+    
+    // 触发自定义事件，通知搜索组件：Pagefind 准备好了
+    document.dispatchEvent(new CustomEvent('pagefind-ready'));
+  } catch (error) {
+    console.error('Pagefind 加载失败:', error);
+  } finally {
+    window.pagefindLoading = false;
+  }
+}
+
+// 2. 绑定到搜索按钮
+function attachSearchListener() {
+  const btn = document.getElementById('search-button');
+  if (btn) {
+    btn.addEventListener('click', loadAndSearch, { once: true });
+  }
+}
+
+// 兼容 Astro 的 View Transitions
+document.addEventListener('astro:page-load', attachSearchListener);
+})();</script> </div> <main class="flex-grow">  <div class="mx-auto w-full max-w-[var(--page-width)]"> <!-- Cover --><div class="text-center pt-5 pb-10 max-w-[var(--page-width)] mx-auto md:mt-0 mt-28"> <p class="text-[var(--text-color)] text-3xl py-5 font-bold">Friends</p> <p class="text-[var(--text-color-70)] font-bold">Interesting Souls</p> </div> <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-[var(--text-color)] mb-12">  </div> <div data-pagefind-body class="markdown-content mb-6 markdown-content onload-animation">  <h3 id="friend-links">Friend Links</h3>
+<p>There are no friend links here yet.</p>  </div> <script type="module" src="/_astro/Markdown.astro_astro_type_script_index_0_lang.75lIGoEd.js"></script>  <script type="module">const r='<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>',i='<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';function s(){document.querySelectorAll("pre").forEach(e=>{if(e.parentElement.classList.contains("code-block-wrapper"))return;const n=document.createElement("div");n.className="code-block-wrapper",e.parentNode.insertBefore(n,e),n.appendChild(e);const t=document.createElement("button");t.className="copy-btn",t.innerHTML=`<span class="icon-copy">${r}</span><span class="icon-check">${i}</span>`,n.appendChild(t),t.addEventListener("click",async()=>{const o=e.querySelector("code"),c=o?o.innerText:e.innerText;await navigator.clipboard.writeText(c),t.classList.add("copied"),setTimeout(()=>t.classList.remove("copied"),2e3)})})}s();document.addEventListener("astro:page-load",s);</script> <script type="module">function o(){document.querySelectorAll(".spoiler").forEach(e=>{let s=null,t=0;e.addEventListener("click",()=>{if(e.classList.add("revealed"),t=Date.now(),s&&clearTimeout(s),!(window.innerWidth<776))s=setTimeout(()=>{e.classList.remove("revealed")},3e3);else{const i=()=>{Date.now()-t>=3e3&&(e.classList.remove("revealed"),window.removeEventListener("scroll",i))};window.addEventListener("scroll",i,{passive:!0})}})})}o();document.addEventListener("astro:page-load",o);</script> </div>  </main> <!-- footer --><footer class="flex flex-col md:flex-row md:justify-between items-start md:items-center py-10 text-[var(--text-color-70)] max-w-[var(--header-width)] mx-auto w-full" data-astro-cid-sz7xmlte> <div class="mb-1 md:mb-0" data-astro-cid-sz7xmlte>
+© 2024 - 2026 <a class="link-line" target="_self" href="https://www.lishang.fun/" data-astro-cid-sz7xmlte>mclishang</a>.
+</div> <div class="right" data-astro-cid-sz7xmlte> <p data-astro-cid-sz7xmlte>Powered by
+<a target="_blank" href="https://astro.build" title="Astro" class="tooltip-wrapper" data-astro-cid-sz7xmlte><svg width="1em" height="1em" class="inline-block" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:astro">   <symbol id="ai:simple-icons:astro" viewBox="0 0 24 24"><path fill="currentColor" d="M8.358 20.162c-1.186-1.07-1.532-3.316-1.038-4.944c.856 1.026 2.043 1.352 3.272 1.535c1.897.283 3.76.177 5.522-.678c.202-.098.388-.229.608-.36c.166.473.209.95.151 1.437c-.14 1.185-.738 2.1-1.688 2.794c-.38.277-.782.525-1.175.787c-1.205.804-1.531 1.747-1.078 3.119l.044.148a3.16 3.16 0 0 1-1.407-1.188a3.3 3.3 0 0 1-.544-1.815c-.004-.32-.004-.642-.048-.958c-.106-.769-.472-1.113-1.161-1.133c-.707-.02-1.267.411-1.415 1.09c-.012.053-.028.104-.045.165zm-5.961-4.445s3.24-1.575 6.49-1.575l2.451-7.565c.092-.366.36-.614.662-.614s.57.248.662.614l2.45 7.565c3.85 0 6.491 1.575 6.491 1.575L16.088.727C15.93.285 15.663 0 15.303 0H8.697c-.36 0-.615.285-.784.727z"/></symbol><use href="#ai:simple-icons:astro"></use>  </svg></a> <a target="_blank" href="https://svelte.dev/" title="Svelte" class="tooltip-wrapper" data-astro-cid-sz7xmlte><svg width="1em" height="1em" class="inline-block" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:svelte">   <symbol id="ai:simple-icons:svelte" viewBox="0 0 24 24"><path fill="currentColor" d="M10.354 21.125a4.44 4.44 0 0 1-4.765-1.767a4.1 4.1 0 0 1-.703-3.107a4 4 0 0 1 .134-.522l.105-.321l.287.21a7.2 7.2 0 0 0 2.186 1.092l.208.063l-.02.208a1.25 1.25 0 0 0 .226.83a1.34 1.34 0 0 0 1.435.533a1.2 1.2 0 0 0 .343-.15l5.59-3.562a1.16 1.16 0 0 0 .524-.778a1.24 1.24 0 0 0-.211-.937a1.34 1.34 0 0 0-1.435-.533a1.2 1.2 0 0 0-.343.15l-2.133 1.36a4 4 0 0 1-1.135.499a4.44 4.44 0 0 1-4.765-1.766a4.1 4.1 0 0 1-.702-3.108a3.86 3.86 0 0 1 1.742-2.582l5.589-3.563a4 4 0 0 1 1.135-.499a4.44 4.44 0 0 1 4.765 1.767a4.1 4.1 0 0 1 .703 3.107a4 4 0 0 1-.134.522l-.105.321l-.286-.21a7.2 7.2 0 0 0-2.187-1.093l-.208-.063l.02-.207a1.25 1.25 0 0 0-.226-.831a1.34 1.34 0 0 0-1.435-.532a1.2 1.2 0 0 0-.343.15L8.62 9.368a1.16 1.16 0 0 0-.524.778a1.24 1.24 0 0 0 .211.937a1.34 1.34 0 0 0 1.435.533a1.2 1.2 0 0 0 .344-.151l2.132-1.36a4 4 0 0 1 1.135-.498a4.44 4.44 0 0 1 4.765 1.766a4.1 4.1 0 0 1 .702 3.108a3.86 3.86 0 0 1-1.742 2.583l-5.589 3.562a4 4 0 0 1-1.135.499m10.358-17.95C18.484-.015 14.082-.96 10.9 1.068L5.31 4.63a6.4 6.4 0 0 0-2.896 4.295a6.75 6.75 0 0 0 .666 4.336a6.4 6.4 0 0 0-.96 2.396a6.83 6.83 0 0 0 1.168 5.167c2.229 3.19 6.63 4.135 9.812 2.108l5.59-3.562a6.4 6.4 0 0 0 2.896-4.295a6.76 6.76 0 0 0-.665-4.336a6.4 6.4 0 0 0 .958-2.396a6.83 6.83 0 0 0-1.167-5.168"/></symbol><use href="#ai:simple-icons:svelte"></use>  </svg></a> <a target="_blank" href="https://tailwindcss.com/" title="tailwindcss" class="tooltip-wrapper" data-astro-cid-sz7xmlte><svg width="1em" height="1em" class="inline-block" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:tailwindcss">   <symbol id="ai:simple-icons:tailwindcss" viewBox="0 0 24 24"><path fill="currentColor" d="M12.001 4.8q-4.8 0-6 4.8q1.8-2.4 4.2-1.8c.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12q4.8 0 6-4.8q-1.8 2.4-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8m-6 7.2q-4.8 0-6 4.8q1.8-2.4 4.2-1.8c.913.228 1.565.89 2.288 1.624c1.177 1.194 2.538 2.576 5.512 2.576q4.8 0 6-4.8q-1.8 2.4-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12"/></symbol><use href="#ai:simple-icons:tailwindcss"></use>  </svg></a> <a target="_blank" href="https://github.com/Motues/Momo" title="Momo" class="tooltip-wrapper" data-astro-cid-sz7xmlte><svg width="1em" height="1em" class="inline-block" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:github">   <symbol id="ai:simple-icons:github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol><use href="#ai:simple-icons:github"></use>  </svg></a>
+|
+<a href="/rss.xml" target="_self" title="RSS" class="tooltip-wrapper" data-astro-cid-sz7xmlte><svg width="1em" height="1em" class="inline-block" data-astro-cid-sz7xmlte="true" data-icon="simple-icons:rss">   <symbol id="ai:simple-icons:rss" viewBox="0 0 24 24"><path fill="currentColor" d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24zM3.291 17.415a3.3 3.3 0 0 1 3.293 3.295A3.303 3.303 0 0 1 3.283 24C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295M15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91"/></symbol><use href="#ai:simple-icons:rss"></use>  </svg></a> </p> </div> </footer>  <div id="search-modal" class="fixed inset-0 z-[100] opacity-0 pointer-events-none" data-astro-cid-uhsuufxt> <div class="absolute inset-0 modal-backdrop opacity-0" aria-hidden="true" data-astro-cid-uhsuufxt></div> <div class="fixed inset-0 flex items-start justify-center p-4 pt-[25vh]" data-astro-cid-uhsuufxt> <div class="search-modal-content bg-[var(--bg-color)] rounded-xl shadow-xl w-full max-w-2xl border border-[var(--button-border-color)] overflow-hidden scale-80 transition-all duration-300 opacity-0 flex flex-col max-h-[40vh]" data-astro-cid-uhsuufxt> <div class="flex items-center p-4 border-b border-[var(--button-border-color)]" data-astro-cid-uhsuufxt> <svg class="w-5 h-5 text-[var(--text-color-70)] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-astro-cid-uhsuufxt> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" data-astro-cid-uhsuufxt></path> </svg> <input type="text" id="search-input" placeholder="Enter keywords to start searching..." class="w-full bg-transparent border-0 focus:ring-0 focus:outline-none  text-[var(--text-color)]" autofocus data-astro-cid-uhsuufxt> <button id="close-search" class="ml-2 p-2 text-[var(--text-color-70)] rounded-lg hover:bg-[var(--button-hover-color)] active:bg-[var(--button-hover-color)]" aria-label="Close Search" data-astro-cid-uhsuufxt> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-astro-cid-uhsuufxt> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" data-astro-cid-uhsuufxt></path> </svg> </button> </div> <div id="search-results" class="overflow-y-auto flex-grow" data-astro-cid-uhsuufxt> <div class="p-8 text-center text-[var(--text-color-70)]" data-astro-cid-uhsuufxt> <p data-astro-cid-uhsuufxt>Enter keywords to start searching</p> </div> </div> </div> </div> </div> <script type="module">function o(){const n=document.getElementById("search-button"),e=document.getElementById("search-modal"),i=document.getElementById("close-search"),d=document.getElementById("search-input"),s=e?.firstElementChild,t=e?.querySelector(".search-modal-content");if(!n||!e)return;const l=()=>{e.classList.remove("opacity-0","pointer-events-none"),e.offsetHeight,requestAnimationFrame(()=>{s?.classList.remove("opacity-0"),s?.classList.add("show"),t?.classList.remove("scale-80","opacity-0"),t?.classList.add("scale-100")}),setTimeout(()=>d?.focus(),300)},a=()=>{requestAnimationFrame(()=>{s?.classList.add("opacity-0"),s?.classList.remove("show"),t?.classList.add("scale-80","opacity-0"),t?.classList.remove("scale-100")}),setTimeout(()=>{e.classList.add("opacity-0","pointer-events-none")},300)};n.addEventListener("click",l),i?.addEventListener("click",a),e.addEventListener("click",c=>{t?.contains(c.target)||a()}),document.addEventListener("keydown",c=>{c.key==="Escape"&&!e.classList.contains("opacity-0")&&a()})}document.addEventListener("DOMContentLoaded",o);document.addEventListener("astro:after-swap",o);</script>  <script>(function(){const fakeResult = [{"url":"/","meta":{"title":"This Is a Fake Search Result"},"excerpt":"Because the search cannot work in the <mark>dev</mark> environment."},{"url":"/","meta":{"title":"If You Want to Test the Search"},"excerpt":"Try running <mark>pnpm build && pnpm preview</mark> instead."}];
+const translations = {"placeholder":"Enter keywords to start searching","error":"Search error occurred. Please try again later.","noresult":"No results found."};
+
+function initPagefindSearch() {
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  
+  if (!searchInput || !searchResults) return;
+
+  // 避免重复绑定
+  if (searchInput.dataset.bound === 'true') return;
+  searchInput.dataset.bound = 'true';
+
+  let searchTimeout;
+
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.trim();
+    clearTimeout(searchTimeout);
+    
+    searchTimeout = setTimeout(() => {
+      if (query.length > 0) {
+        performSearch(query);
+      } else {
+        // 清空或显示默认状态
+        searchResults.innerHTML = `
+          <div class="p-8 text-center text-[var(--text-color-70)]">
+            <p>${translations.placeholder}</p>
+          </div>
+        `;
+      }
+    }, 300);
+  });
+}
+
+async function performSearch(query) {
+  const searchResults = document.getElementById('search-results');
+  const isDev = !window.pagefind;
+
+  if (isDev) {
+    displayResults(fakeResult);
+  } else if (window.pagefind) {
+    await window.pagefind.destroy();
+    await window.pagefind.init();
+    // console.log('Pagefind is initialized');
+    try {
+      const searchResultsData = await window.pagefind.search(query);
+      const results = [];
+
+      for (const result of searchResultsData.results) {
+        const data = await result.data();
+        results.push({
+          url: data.url,
+          meta: { title: data.meta.title },
+          excerpt: data.excerpt
+        });
+      }
+
+      displayResults(results);
+    } catch (error) {
+      console.error('Search failed:', error);
+      searchResults.innerHTML = `
+        <div class="p-8 text-center text-red-500">
+          <p>${translations.error}</p>
+        </div>
+      `;
+    }
+  } else {
+    console.log('Pagefind is not available');
+    searchResults.innerHTML = `
+      <div class="p-8 text-center text-[var(--text-color-70)]">
+        <p>搜索功能暂时不可用</p>
+      </div>
+    `;
+  }
+}
+
+function displayResults(results) {
+  const searchResults = document.getElementById('search-results');
+  if (!searchResults) return;
+
+  if (results.length === 0) {
+    searchResults.innerHTML = `
+      <div class="p-8 text-center text-[var(--text-color-70)]">
+        <p>${translations.noresult}</p>
+      </div>
+    `;
+    return;
+  }
+
+  searchResults.innerHTML = results.map(result => `
+    <div class="p-4 border-b border-[var(--button-border-color)] hover:bg-[var(--button-hover-color)]">
+      <a href="${result.url}" class="block no-underline">
+        <h3 class="text-lg font-semibold text-[var(--text-color)] mb-2">${result.meta.title}</h3>
+        <p class="text-[var(--text-color-70)] text-sm">${result.excerpt}</p>
+      </a>
+    </div>
+  `).join('');
+}
+
+// ========== 初始化逻辑 ==========
+document.addEventListener('pagefindready', () => {
+  // console.log('Pagefind is ready');
+});
+document.addEventListener('pagefindloaderror', () => {
+  console.log('Pagefind failed to load, search functionality will not work');
+});
+
+document.addEventListener('DOMContentLoaded', initPagefindSearch);
+document.addEventListener('astro:after-swap', initPagefindSearch);
+})();</script>  </div>  <script>
+        let loaderTimeout;
+
+        // 1. 开始准备跳转
+        document.addEventListener('astro:before-preparation', () => {
+            loaderTimeout = setTimeout(() => {
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.style.display = 'flex';
+            }, 500); 
+        });
+
+        // 2. 页面内容交换完成（DOM 已更新）
+        document.addEventListener('astro:after-swap', () => {
+            clearTimeout(loaderTimeout);
+            
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.style.display = 'none';
+        });
+
+        // 3. 兜底方案：页面完全加载完成（包括资源）
+        document.addEventListener('astro:page-load', () => {
+            clearTimeout(loaderTimeout);
+            const overlay = document.getElementById('loading-overlay');
+            if (overlay) overlay.style.display = 'none';
+        });
+        </script> </body> </html>  <script type="module" src="/_astro/Layout.astro_astro_type_script_index_0_lang.5i-6mVVK.js"></script>
