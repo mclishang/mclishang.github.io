@@ -1,22 +1,14 @@
-# 仅发布静态产物到 GitHub Pages，源码与构建配置不入库
+# 构建产物与缓存
 .astro/
-.github/
-doc/
-node_modules/
-public/
-script/
-src/
-
-astro.config.mjs
-package.json
-pagefind.yml
-pnpm-lock.yaml
-pnpm-workspace.yaml
-svelte.config.js
-tsconfig.json
-
-# 本地产物目录仅用于拷贝，不直接提交
 dist/
+node_modules/
+
+# 本地脚本与临时文件
+script/
+doc/
+
+# 仅保留 Pages 部署工作流
+.github/workflows/release.yml
 
 # 环境与日志
 .env
