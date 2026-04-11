@@ -27,6 +27,13 @@ export interface CommentsConfig {
   ownerName: string;
 }
 
+interface OwnerAvatarRuleInput {
+  isOwner: boolean;
+  commentAuthor: string;
+  ownerName: string;
+  ownerAvatar: string;
+}
+
 type EnvValue = string | undefined;
 type PublicEnv = Record<string, EnvValue>;
 
@@ -167,6 +174,23 @@ export function shouldShowOwnerKeyInput(author: string, ownerName: string): bool
   }
 
   return normalizedAuthor === normalizedOwnerName;
+}
+
+export function shouldUseOwnerAvatar({
+  isOwner,
+  commentAuthor,
+  ownerName,
+  ownerAvatar,
+}: OwnerAvatarRuleInput): boolean {
+  if (!isOwner) {
+    return false;
+  }
+
+  if (!ownerAvatar.trim()) {
+    return false;
+  }
+
+  return shouldShowOwnerKeyInput(commentAuthor, ownerName);
 }
 
 function normalizeCommentItem(input: Record<string, unknown>): CommentItemData {

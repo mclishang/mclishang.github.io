@@ -6,7 +6,7 @@
   import CommentItem from './CommentItem.svelte';
   import i18nit from '../../i18n/translation.ts';
   import { formatFullDate } from '@/utils/time';
-  import { shouldShowOwnerKeyInput } from '@/utils/comments';
+  import { shouldShowOwnerKeyInput, shouldUseOwnerAvatar } from '@/utils/comments';
 
   export let c: any;
   export let postSlug: string;
@@ -58,7 +58,13 @@
 
   const dispatch = createEventDispatcher();
 
-  $: avatarUrl = c.isOwner && ownerAvatar ? ownerAvatar : c.avatar;
+  $: usesOwnerAvatar = shouldUseOwnerAvatar({
+    isOwner: Boolean(c.isOwner),
+    commentAuthor: c.author ?? '',
+    ownerName,
+    ownerAvatar,
+  });
+  $: avatarUrl = usesOwnerAvatar ? ownerAvatar : c.avatar;
 
   // 计算内容字数
   function getWordCount(text: string): { chars: number; words: number } {
@@ -120,12 +126,12 @@
         <a
           href={c.url}
           target="_blank"
-          class={`font-semibold transition-colors hover:text-[var(--link-color)] ${c.isOwner ? 'text-[var(--link-color)]' : 'text-[var(--text-color)]'}`}
+          class={`font-semibold transition-colors hover:text-[var(--link-color)] ${usesOwnerAvatar ? 'text-[var(--link-color)]' : 'text-[var(--text-color)]'}`}
         >
           {c.author}
         </a>
       {:else}
-        <span class={`font-semibold ${c.isOwner ? 'text-[var(--link-color)]' : 'text-[var(--text-color)]'}`}>{c.author}</span>
+        <span class={`font-semibold ${usesOwnerAvatar ? 'text-[var(--link-color)]' : 'text-[var(--text-color)]'}`}>{c.author}</span>
       {/if}
 
       {#if isFlattened && parentAuthorName}

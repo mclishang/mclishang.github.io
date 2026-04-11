@@ -7,6 +7,7 @@ import {
   getCommentsPagination,
   normalizeOwnerMetaResponse,
   normalizeCommentsResponse,
+  shouldUseOwnerAvatar,
   shouldShowOwnerKeyInput,
 } from './comments';
 
@@ -181,6 +182,55 @@ describe('shouldShowOwnerKeyInput', () => {
     expect(shouldShowOwnerKeyInput('普通读者', '一只殇')).toBe(false);
     expect(shouldShowOwnerKeyInput('一只殇', '')).toBe(false);
     expect(shouldShowOwnerKeyInput('', '一只殇')).toBe(false);
+  });
+});
+
+describe('shouldUseOwnerAvatar', () => {
+  it('仅在本人标记与站长昵称同时命中时才使用站点头像', () => {
+    expect(
+      shouldUseOwnerAvatar({
+        isOwner: true,
+        commentAuthor: '一只殇',
+        ownerName: '一只殇',
+        ownerAvatar: 'https://example.com/site-avatar.png',
+      })
+    ).toBe(true);
+
+    expect(
+      shouldUseOwnerAvatar({
+        isOwner: true,
+        commentAuthor: '普通读者',
+        ownerName: '一只殇',
+        ownerAvatar: 'https://example.com/site-avatar.png',
+      })
+    ).toBe(false);
+
+    expect(
+      shouldUseOwnerAvatar({
+        isOwner: false,
+        commentAuthor: '一只殇',
+        ownerName: '一只殇',
+        ownerAvatar: 'https://example.com/site-avatar.png',
+      })
+    ).toBe(false);
+
+    expect(
+      shouldUseOwnerAvatar({
+        isOwner: true,
+        commentAuthor: '一只殇',
+        ownerName: '',
+        ownerAvatar: 'https://example.com/site-avatar.png',
+      })
+    ).toBe(false);
+
+    expect(
+      shouldUseOwnerAvatar({
+        isOwner: true,
+        commentAuthor: '一只殇',
+        ownerName: '一只殇',
+        ownerAvatar: '',
+      })
+    ).toBe(false);
   });
 });
 
