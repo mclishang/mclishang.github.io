@@ -7,6 +7,7 @@ export interface CommentItemData {
   contentHtml: string;
   pubDate: string;
   parentId: number | string | null;
+  isOwner: boolean;
   replies: CommentItemData[];
 }
 
@@ -117,6 +118,20 @@ function getArrayField<T extends Record<string, unknown>>(
   return [];
 }
 
+function getBooleanField<T extends Record<string, unknown>>(
+  payload: T,
+  keys: string[]
+): boolean {
+  for (const key of keys) {
+    const value = payload[key];
+    if (typeof value === 'boolean') {
+      return value;
+    }
+  }
+
+  return false;
+}
+
 export function buildCommentsConfig(env: PublicEnv): CommentsConfig {
   const allowedOrigin = normalizeUrl(env.PUBLIC_SITE_URL);
   const backendUrl =
@@ -149,6 +164,7 @@ function normalizeCommentItem(input: Record<string, unknown>): CommentItemData {
       (input.parentId as number | string | null | undefined) ??
       (input.parent_id as number | string | null | undefined) ??
       null,
+    isOwner: getBooleanField(input, ['isOwner', 'is_owner']),
     replies: getArrayField(input, ['replies']).map((reply) =>
       normalizeCommentItem(reply as Record<string, unknown>)
     ),

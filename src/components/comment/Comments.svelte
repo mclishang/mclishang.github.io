@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { siteConfig } from '@/config.ts';
+  import { profileConfig, siteConfig } from '@/config.ts';
   import CommentItem from './CommentItem.svelte';
   import i18nit from '../../i18n/translation.ts';
   import {
@@ -28,6 +28,7 @@
   let email = '';
   let url = '';
   let content = '';
+  let ownerKey = '';
 
   // 防止重复提交
   let submitting = false;
@@ -101,7 +102,7 @@
     // 防止重复提交
     if (submitting) return;
 
-    let submitAuthor, submitEmail, submitUrl, submitContent;
+    let submitAuthor, submitEmail, submitUrl, submitContent, submitOwnerKey;
 
     if (replyData) {
       // 处理回复评论
@@ -109,12 +110,14 @@
       submitEmail = replyData.email;
       submitUrl = replyData.url;
       submitContent = replyData.content;
+      submitOwnerKey = replyData.ownerKey;
     } else {
       // 处理顶层评论
       submitAuthor = author;
       submitEmail = email;
       submitUrl = url;
       submitContent = content;
+      submitOwnerKey = ownerKey;
     }
 
     if (!submitAuthor || !submitEmail || !submitContent) {
@@ -143,6 +146,7 @@
           email: submitEmail,
           url: submitUrl || null,
           content: submitContent,
+          owner_key: submitOwnerKey || null,
           parent_id: parentId,
           post_url: window.location.href, // 添加当前页面的URL
           post_title: postTitle,
@@ -158,6 +162,7 @@
       // 重置表单
       if (!replyData) {
         content = '';
+        ownerKey = '';
         // 保存用户信息到本地存储
         saveUserInfoToStorage();
       }
@@ -218,6 +223,13 @@
       </div>
 
       <div>
+        <label for="owner-key" class="block text-sm text-[var(--text-color)] mb-1">{t('comments.ownerKey')}</label>
+        <input id="owner-key" type="password" placeholder={t('comments.ownerKeyHint')} bind:value={ownerKey} autocomplete="off"
+          class="rounded w-full text-[var(--text-color)] border border-[var(--button-border-color)]  focus:outline-none focus:border-[var(--link-color)] text-sm p-2" />
+        <p class="mt-1 text-xs text-[var(--text-color-70)]">{t('comments.ownerKeyHint')}</p>
+      </div>
+
+      <div>
         <textarea placeholder={t('comments.welcome')}
           class="rounded w-full border text-[var(--text-color)] border-[var(--button-border-color)]  focus:outline-none focus:border-[var(--link-color)] text-sm p-3 min-h-[100px]"
           bind:value={content}></textarea>
@@ -250,6 +262,7 @@
       <div class="space-y-6">
         {#each comments as c}
           <CommentItem {c} {postSlug} {author} {email} {url} {language}
+            ownerAvatar={profileConfig.avatar}
             on:reply={(e) => setReplyingTo(e.detail)}
             on:cancel={() => setReplyingTo(null)}
             on:submit={async (e) => {

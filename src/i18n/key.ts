@@ -81,6 +81,8 @@ export interface Translation {
         words: string;
         contentTooLong: string;
         replyTo: string;
+        ownerKey: string;
+        ownerKeyHint: string;
     },
     langNote: {
         note: string;

@@ -51,6 +51,7 @@ describe('normalizeCommentsResponse', () => {
         contentHtml: '<p>你好</p>',
         pubDate: '2026-04-11T12:00:00Z',
         parentId: null,
+        isOwner: false,
         replies: [
           {
             id: 2,
@@ -61,11 +62,46 @@ describe('normalizeCommentsResponse', () => {
             contentHtml: '<p>收到</p>',
             pubDate: '2026-04-11T12:30:00Z',
             parentId: 1,
+            isOwner: false,
             replies: [],
           },
         ],
       },
     ]);
+  });
+
+  it('保留评论接口返回的本人标记', () => {
+    const result = normalizeCommentsResponse({
+      data: {
+        comments: [
+          {
+            id: 1,
+            author: 'Owner',
+            avatar: 'https://example.com/avatar.png',
+            content_text: '你好',
+            content_html: '<p>你好</p>',
+            pub_date: '2026-04-11T12:00:00Z',
+            is_owner: true,
+            replies: [
+              {
+                id: 2,
+                author: 'Guest',
+                avatar_url: 'https://example.com/guest.png',
+                contentText: '收到',
+                contentHtml: '<p>收到</p>',
+                pubDate: '2026-04-11T12:30:00Z',
+                parent_id: 1,
+                isOwner: false,
+                replies: [],
+              },
+            ],
+          },
+        ],
+      },
+    });
+
+    expect(result[0]?.isOwner).toBe(true);
+    expect(result[0]?.replies[0]?.isOwner).toBe(false);
   });
 });
 

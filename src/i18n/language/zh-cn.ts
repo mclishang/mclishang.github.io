@@ -82,7 +82,9 @@ const translation: Translation = {
         characters: "字符",
         words: "单词",
         contentTooLong: "评论内容超出限制：不超过2000字或1000单词",
-        replyTo: "回复"
+        replyTo: "回复",
+        ownerKey: "专属验证密钥",
+        ownerKeyHint: "仅本人使用，可留空"
     },
     langNote: {
         note: "注意：",

@@ -82,7 +82,9 @@ const translation: Translation = {
         characters: "characters",
         words: "words",
         contentTooLong: "Comment content exceeds limit: no more than 2000 characters or 1000 words",
-        replyTo: "reply to"
+        replyTo: "reply to",
+        ownerKey: "Owner Verification Key",
+        ownerKeyHint: "Only for owner, can be left blank"
     },
     langNote: {
         note: "Note: ",

@@ -5,7 +5,6 @@
   // 👇 自引用，递归必须这样导入
   import CommentItem from './CommentItem.svelte';
   import i18nit from '../../i18n/translation.ts';
-  import { siteConfig } from '@/config.ts';
   import { formatFullDate } from '@/utils/time';
 
   export let c: any;
@@ -15,6 +14,7 @@
   export let email: string = '';
   export let url: string = '';
   export let language: string = 'zh-cn';
+  export let ownerAvatar: string = '';
 
   export let depth: number = 0; // 记录评论的层级，顶层为 0
   export let isFlattened: boolean = false; // 是否处于移动端被“拍平”的状态
@@ -47,13 +47,14 @@
   let replyEmail = '';
   let replyUrl = '';
   let replyContent = '';
+  let replyOwnerKey = '';
 
   // 防止重复提交 - 每个回复表单独立的状态
   let replySubmitting = false;
 
   const dispatch = createEventDispatcher();
 
-  const avatarUrl = c.avatar;
+  $: avatarUrl = c.isOwner && ownerAvatar ? ownerAvatar : c.avatar;
 
   // 计算内容字数
   function getWordCount(text: string): { chars: number; words: number } {
@@ -67,8 +68,6 @@
     const { chars, words } = getWordCount(text);
     return chars <= 2000 && words <= 1000;
   }
-
-  const apiUrl = siteConfig.comments.backendUrl;
 
   function isValidHtml(str: string): boolean {
     if (!str.includes('<') || !str.includes('>')) return false;
@@ -114,11 +113,15 @@
   <div class="flex-1 min-w-0">
     <div class="flex items-center flex-wrap gap-x-2 gap-y-1">
       {#if c.url}
-        <a href={c.url} target="_blank" class="font-semibold text-[var(--text-color)] hover:text-[var(--link-color)] transition-colors">
+        <a
+          href={c.url}
+          target="_blank"
+          class={`font-semibold transition-colors hover:text-[var(--link-color)] ${c.isOwner ? 'text-[var(--link-color)]' : 'text-[var(--text-color)]'}`}
+        >
           {c.author}
         </a>
       {:else}
-        <span class="font-semibold text-[var(--text-color)]">{c.author}</span>
+        <span class={`font-semibold ${c.isOwner ? 'text-[var(--link-color)]' : 'text-[var(--text-color)]'}`}>{c.author}</span>
       {/if}
 
       {#if isFlattened && parentAuthorName}
@@ -199,9 +202,11 @@
             email: replyEmail,
             url: replyUrl,
             content: replyContent,
+            ownerKey: replyOwnerKey,
             post_url: window.location.href,
           });
           replyContent = '';
+          replyOwnerKey = '';
         }} class="space-y-3">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div>
@@ -219,6 +224,13 @@
               <input id="reply-url-{c.id}" type="url" placeholder={t('comments.optional')} bind:value={replyUrl}
                 class="rounded w-full text-[var(--text-color)] border border-[var(--button-border-color)] focus:outline-none focus:border-[var(--link-color)] text-sm py-1 px-2" />
             </div>
+          </div>
+
+          <div>
+            <label for="reply-owner-key-{c.id}" class="block text-xs text-[var(--text-color)] mb-1">{t('comments.ownerKey')}</label>
+            <input id="reply-owner-key-{c.id}" type="password" placeholder={t('comments.ownerKeyHint')} bind:value={replyOwnerKey} autocomplete="off"
+              class="rounded w-full text-[var(--text-color)] border border-[var(--button-border-color)] focus:outline-none focus:border-[var(--link-color)] text-sm py-1 px-2" />
+            <p class="mt-1 text-xs text-[var(--text-color-70)]">{t('comments.ownerKeyHint')}</p>
           </div>
 
           <div>
@@ -259,6 +271,7 @@
               {email}
               {url}
               {language}
+              {ownerAvatar}
               depth={depth + 1}
               isFlattened={false}
               on:reply={(e) => dispatch('reply', e.detail)}
@@ -280,6 +293,7 @@
               {email}
               {url}
               {language}
+              {ownerAvatar}
               depth={1}
               isFlattened={true}
               parentAuthorName={flatReply._parentName}
