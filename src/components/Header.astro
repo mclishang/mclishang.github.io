@@ -203,8 +203,6 @@ if (profileConfig.indexPage) {
 </style>
 
 <script>
-const MOBILE_HEADER_MAX_WIDTH = 775;
-
 function initMobileNav() {
   const menuButton = document.getElementById('mobile-menu-button');
   const closeButton = document.getElementById('mobile-menu-close');
@@ -303,6 +301,7 @@ document.addEventListener('astro:after-swap', initLanguageMenu);
 
 <script>
   function initHeaderScroll() {
+    const MOBILE_HEADER_MAX_WIDTH = 775;
     const header = document.getElementById('main-header');
     if (!header) return;
 
