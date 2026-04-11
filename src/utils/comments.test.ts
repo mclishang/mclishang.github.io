@@ -1,0 +1,110 @@
+import { describe, expect, it } from 'vitest';
+
+import {
+  buildCommentsConfig,
+  getCommentsPagination,
+  normalizeCommentsResponse,
+} from './comments';
+
+describe('normalizeCommentsResponse', () => {
+  it('归一化 Momo-Backend 的嵌套评论响应', () => {
+    const result = normalizeCommentsResponse({
+      data: {
+        comments: [
+          {
+            id: 1,
+            author: 'Alice',
+            url: 'https://example.com',
+            avatar: 'https://example.com/avatar.png',
+            content_text: '你好',
+            content_html: '<p>你好</p>',
+            pub_date: '2026-04-11T12:00:00Z',
+            replies: [
+              {
+                id: 2,
+                author: 'Bob',
+                avatar_url: 'https://example.com/bob.png',
+                contentText: '收到',
+                contentHtml: '<p>收到</p>',
+                pubDate: '2026-04-11T12:30:00Z',
+                parent_id: 1,
+                replies: [],
+              },
+            ],
+          },
+        ],
+        pagination: {
+          page: 1,
+          limit: 20,
+          total: 21,
+        },
+      },
+    });
+
+    expect(result).toEqual([
+      {
+        id: 1,
+        author: 'Alice',
+        url: 'https://example.com',
+        avatar: 'https://example.com/avatar.png',
+        contentText: '你好',
+        contentHtml: '<p>你好</p>',
+        pubDate: '2026-04-11T12:00:00Z',
+        parentId: null,
+        replies: [
+          {
+            id: 2,
+            author: 'Bob',
+            url: null,
+            avatar: 'https://example.com/bob.png',
+            contentText: '收到',
+            contentHtml: '<p>收到</p>',
+            pubDate: '2026-04-11T12:30:00Z',
+            parentId: 1,
+            replies: [],
+          },
+        ],
+      },
+    ]);
+  });
+});
+
+describe('getCommentsPagination', () => {
+  it('兼容 totalPage 与 total 两种分页字段', () => {
+    expect(
+      getCommentsPagination({
+        page: 1,
+        limit: 20,
+        totalPage: 3,
+      })
+    ).toEqual({ page: 1, limit: 20, totalPage: 3, hasMore: true });
+
+    expect(
+      getCommentsPagination({
+        page: 2,
+        limit: 20,
+        total: 35,
+      })
+    ).toEqual({ page: 2, limit: 20, totalPage: 2, hasMore: false });
+  });
+});
+
+describe('buildCommentsConfig', () => {
+  it('从环境变量构建评论配置并清理地址格式', () => {
+    const result = buildCommentsConfig({
+      PUBLIC_SITE_URL: 'https://www.lishang.fun',
+      PUBLIC_COMMENTS_ENABLE: 'true',
+      PUBLIC_COMMENTS_BACKEND_URL: 'https://comments.lishang.fun/',
+      PUBLIC_COMMENTS_PAGE_SIZE: '50',
+      PUBLIC_COMMENTS_ENABLED_LOCALES: 'zh-cn,en',
+    });
+
+    expect(result).toEqual({
+      enable: true,
+      backendUrl: 'https://comments.lishang.fun',
+      pageSize: 50,
+      enabledLocales: ['zh-cn', 'en'],
+      allowedOrigin: 'https://www.lishang.fun',
+    });
+  });
+});

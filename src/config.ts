@@ -5,6 +5,15 @@ import type {
 } from "./types/config"
 
 import type { FriendLink } from "./types/friend"
+import { buildCommentsConfig } from "./utils/comments"
+
+const commentsConfig = buildCommentsConfig({
+    PUBLIC_SITE_URL: "https://www.lishang.fun",
+    PUBLIC_COMMENTS_ENABLE: "true",
+    PUBLIC_COMMENTS_BACKEND_URL: "https://momo-backend-worker.lishang778.workers.dev",
+    PUBLIC_COMMENTS_ENABLED_LOCALES: "zh-cn,en",
+    ...import.meta.env,
+});
 
 export const siteConfig: SiteConfig = {
     title: "MCLISHANG",
@@ -20,10 +29,7 @@ export const siteConfig: SiteConfig = {
     blogNavi: {
         enable: true // 是否启用文章底部导航
     },
-    comments: {
-        enable: false, // 暂时关闭评论
-        backendUrl: "" // 评论关闭时留空
-    }
+    comments: commentsConfig
 }
 
 export const profileConfig: ProfileConfig = {

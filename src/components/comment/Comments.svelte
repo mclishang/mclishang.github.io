@@ -3,6 +3,10 @@
   import { siteConfig } from '@/config.ts';
   import CommentItem from './CommentItem.svelte';
   import i18nit from '../../i18n/translation.ts';
+  import {
+    getCommentsPagination,
+    normalizeCommentsResponse,
+  } from '@/utils/comments';
 
   export let postSlug: string;
   export let language: string = 'zh-cn';
@@ -16,7 +20,7 @@
   let loading = true;
   let error = '';
   let page = 1;
-  let limit = 20;
+  let limit = siteConfig.comments.pageSize || 20;
   let hasMore = false;
 
   // 顶层评论表单数据
@@ -74,16 +78,20 @@
 
   async function loadComments() {
     loading = true;
+    error = '';
     try {
       const res = await fetch(
         `${apiUrl}/api/comments?post_slug=${encodeURIComponent(postSlug)}&nested=true&page=${page}&limit=${limit}`
       );
-      if (!res.ok) throw new Error(t('comments.loadFailed') || '加载失败');
       const data = await res.json();
-      comments = data.data.comments;
-      hasMore = data.data.pagination.totalPage > page;
+      if (!res.ok || data?.code !== 200) {
+        throw new Error(data?.message || t('comments.loadFailed') || '评论服务暂时不可用，请稍后再试');
+      }
+
+      comments = normalizeCommentsResponse(data);
+      hasMore = getCommentsPagination(data?.data?.pagination).hasMore;
     } catch (err: any) {
-      error = err.message;
+      error = err?.message || t('comments.loadFailed') || '评论服务暂时不可用，请稍后再试';
     } finally {
       loading = false;
     }
@@ -141,7 +149,11 @@
         }),
       });
       const data = await res.json();
-      alert(data.message || t('comments.submitSuccess') || '提交成功');
+      if (!res.ok || data?.code !== 200) {
+        throw new Error(data?.message || t('comments.submitFailed') || '评论提交失败，请稍后再试');
+      }
+
+      alert(data.message || t('comments.submitSuccess') || '评论已提交并发布');
 
       // 重置表单
       if (!replyData) {
@@ -153,8 +165,11 @@
 
       // 重新加载评论
       await loadComments();
+      return true;
     } catch (err) {
-      alert(t('comments.submitFailed') || '提交失败，请稍后再试');
+      const message = err instanceof Error ? err.message : t('comments.submitFailed') || '评论提交失败，请稍后再试';
+      alert(message);
+      return false;
     } finally {
       // 只有在提交顶层评论时才重置 submitting 状态
       if (!parentId) {
@@ -228,7 +243,7 @@
     {#if loading}
       <p data-aos="fade-up" class="text-[var(--text-color)] text-center">{t('comments.loading') || '正在加载评论...'}</p>
     {:else if error}
-      <p data-aos="fade-up" class="text-red-500 text-center">{t('comments.loadFailed') || '加载失败：'}{error}</p>
+      <p data-aos="fade-up" class="text-red-500 text-center">{t('comments.loadFailed') || '评论加载失败：'}{error}</p>
     {:else}
       <h4 data-aos="fade-up" class="text-[var(--text-color)] text-base font-semibold mb-4">{comments.length} {t('comments.comments')}</h4>
 

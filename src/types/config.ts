@@ -15,6 +15,9 @@ export type SiteConfig = {
     comments: {
         enable: boolean;
         backendUrl: string;
+        pageSize?: number;
+        enabledLocales?: string[];
+        allowedOrigin?: string;
     }
 }
 

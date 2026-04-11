@@ -19,6 +19,7 @@ import { blogCoverUrl } from '@/utils/url-utils'
 import { formatFullDate } from '@/utils/time'
 import { getBlogEntrySort } from '@utils/content-utils'
 import { getRelativeLocaleUrl } from '@utils/url-utils';
+import { isCommentsLocaleEnabled } from '@/utils/comments';
 
 
 const currentLang = Astro.currentLocale || i18n!.defaultLocale;
@@ -136,6 +137,7 @@ const { remarkPluginFrontmatter } = await render(entry);
         }
         {
             siteConfig.comments.enable &&
+            isCommentsLocaleEnabled(siteConfig.comments.enabledLocales || [], currentLang) &&
             <Comments postSlug={entry.data.slugId} language={currentLang} postTitle={entry.data.title} client:visible/>
         }
     </div>
