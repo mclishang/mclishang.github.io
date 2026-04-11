@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import {
@@ -179,5 +181,18 @@ describe('shouldShowOwnerKeyInput', () => {
     expect(shouldShowOwnerKeyInput('普通读者', '一只殇')).toBe(false);
     expect(shouldShowOwnerKeyInput('一只殇', '')).toBe(false);
     expect(shouldShowOwnerKeyInput('', '一只殇')).toBe(false);
+  });
+});
+
+describe('Comments.svelte', () => {
+  it('不应把响应式语句残留到模板正文中', () => {
+    const source = readFileSync(
+      resolve(process.cwd(), 'src/components/comment/Comments.svelte'),
+      'utf8'
+    );
+
+    expect(source.trimEnd()).not.toMatch(
+      /<\/div>\s*\$: showOwnerKeyInput = shouldShowOwnerKeyInput\(author, ownerName\);$/
+    );
   });
 });

@@ -26,6 +26,7 @@
   let hasMore = false;
   let ownerName = siteConfig.comments.ownerName || '';
   let showOwnerKeyInput = false;
+  $: showOwnerKeyInput = shouldShowOwnerKeyInput(author, ownerName);
 
   // 顶层评论表单数据
   let author = '';
@@ -305,4 +306,3 @@
     {/if}
   </div>
 </div>
-  $: showOwnerKeyInput = shouldShowOwnerKeyInput(author, ownerName);
