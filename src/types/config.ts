@@ -18,6 +18,7 @@ export type SiteConfig = {
         pageSize?: number;
         enabledLocales?: string[];
         allowedOrigin?: string;
+        ownerName?: string;
     }
 }
 

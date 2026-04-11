@@ -6,6 +6,7 @@
   import CommentItem from './CommentItem.svelte';
   import i18nit from '../../i18n/translation.ts';
   import { formatFullDate } from '@/utils/time';
+  import { shouldShowOwnerKeyInput } from '@/utils/comments';
 
   export let c: any;
   export let postSlug: string;
@@ -15,6 +16,7 @@
   export let url: string = '';
   export let language: string = 'zh-cn';
   export let ownerAvatar: string = '';
+  export let ownerName: string = '';
 
   export let depth: number = 0; // 记录评论的层级，顶层为 0
   export let isFlattened: boolean = false; // 是否处于移动端被“拍平”的状态
@@ -48,6 +50,8 @@
   let replyUrl = '';
   let replyContent = '';
   let replyOwnerKey = '';
+  let showReplyOwnerKeyInput = false;
+  $: showReplyOwnerKeyInput = shouldShowOwnerKeyInput(replyAuthor, ownerName);
 
   // 防止重复提交 - 每个回复表单独立的状态
   let replySubmitting = false;
@@ -202,7 +206,7 @@
             email: replyEmail,
             url: replyUrl,
             content: replyContent,
-            ownerKey: replyOwnerKey,
+            ownerKey: showReplyOwnerKeyInput ? replyOwnerKey : '',
             post_url: window.location.href,
           });
           replyContent = '';
@@ -226,12 +230,14 @@
             </div>
           </div>
 
-          <div>
-            <label for="reply-owner-key-{c.id}" class="block text-xs text-[var(--text-color)] mb-1">{t('comments.ownerKey')}</label>
-            <input id="reply-owner-key-{c.id}" type="password" placeholder={t('comments.ownerKeyHint')} bind:value={replyOwnerKey} autocomplete="off"
-              class="rounded w-full text-[var(--text-color)] border border-[var(--button-border-color)] focus:outline-none focus:border-[var(--link-color)] text-sm py-1 px-2" />
-            <p class="mt-1 text-xs text-[var(--text-color-70)]">{t('comments.ownerKeyHint')}</p>
-          </div>
+          {#if showReplyOwnerKeyInput}
+            <div>
+              <label for="reply-owner-key-{c.id}" class="block text-xs text-[var(--text-color)] mb-1">{t('comments.ownerKey')}</label>
+              <input id="reply-owner-key-{c.id}" type="password" placeholder={t('comments.ownerKeyHint')} bind:value={replyOwnerKey} autocomplete="off"
+                class="rounded w-full text-[var(--text-color)] border border-[var(--button-border-color)] focus:outline-none focus:border-[var(--link-color)] text-sm py-1 px-2" />
+              <p class="mt-1 text-xs text-[var(--text-color-70)]">{t('comments.ownerKeyHint')}</p>
+            </div>
+          {/if}
 
           <div>
             <textarea placeholder={t('comments.replyPlaceholder') || "写下你的回复..."}
@@ -272,6 +278,7 @@
               {url}
               {language}
               {ownerAvatar}
+              {ownerName}
               depth={depth + 1}
               isFlattened={false}
               on:reply={(e) => dispatch('reply', e.detail)}
@@ -294,6 +301,7 @@
               {url}
               {language}
               {ownerAvatar}
+              {ownerName}
               depth={1}
               isFlattened={true}
               parentAuthorName={flatReply._parentName}

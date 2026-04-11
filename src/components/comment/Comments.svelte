@@ -5,7 +5,9 @@
   import i18nit from '../../i18n/translation.ts';
   import {
     getCommentsPagination,
+    normalizeOwnerMetaResponse,
     normalizeCommentsResponse,
+    shouldShowOwnerKeyInput,
   } from '@/utils/comments';
 
   export let postSlug: string;
@@ -22,6 +24,8 @@
   let page = 1;
   let limit = siteConfig.comments.pageSize || 20;
   let hasMore = false;
+  let ownerName = siteConfig.comments.ownerName || '';
+  let showOwnerKeyInput = false;
 
   // 顶层评论表单数据
   let author = '';
@@ -98,6 +102,21 @@
     }
   }
 
+  async function loadOwnerMeta() {
+    try {
+      const res = await fetch(`${apiUrl}/api/comments/owner-meta`);
+      const data = await res.json();
+      if (!res.ok) {
+        ownerName = '';
+        return;
+      }
+
+      ownerName = normalizeOwnerMetaResponse(data);
+    } catch {
+      ownerName = '';
+    }
+  }
+
   async function submitComment(parentId: number | null = null, replyData: any = null) {
     // 防止重复提交
     if (submitting) return;
@@ -146,7 +165,7 @@
           email: submitEmail,
           url: submitUrl || null,
           content: submitContent,
-          owner_key: submitOwnerKey || null,
+          owner_key: shouldShowOwnerKeyInput(submitAuthor, ownerName) ? submitOwnerKey || null : null,
           parent_id: parentId,
           post_url: window.location.href, // 添加当前页面的URL
           post_title: postTitle,
@@ -195,6 +214,7 @@
 
   onMount(() => {
     loadUserInfoFromStorage();
+    loadOwnerMeta();
     loadComments();
   });
 </script>
@@ -222,12 +242,14 @@
         </div>
       </div>
 
-      <div>
-        <label for="owner-key" class="block text-sm text-[var(--text-color)] mb-1">{t('comments.ownerKey')}</label>
-        <input id="owner-key" type="password" placeholder={t('comments.ownerKeyHint')} bind:value={ownerKey} autocomplete="off"
-          class="rounded w-full text-[var(--text-color)] border border-[var(--button-border-color)]  focus:outline-none focus:border-[var(--link-color)] text-sm p-2" />
-        <p class="mt-1 text-xs text-[var(--text-color-70)]">{t('comments.ownerKeyHint')}</p>
-      </div>
+      {#if showOwnerKeyInput}
+        <div>
+          <label for="owner-key" class="block text-sm text-[var(--text-color)] mb-1">{t('comments.ownerKey')}</label>
+          <input id="owner-key" type="password" placeholder={t('comments.ownerKeyHint')} bind:value={ownerKey} autocomplete="off"
+            class="rounded w-full text-[var(--text-color)] border border-[var(--button-border-color)]  focus:outline-none focus:border-[var(--link-color)] text-sm p-2" />
+          <p class="mt-1 text-xs text-[var(--text-color-70)]">{t('comments.ownerKeyHint')}</p>
+        </div>
+      {/if}
 
       <div>
         <textarea placeholder={t('comments.welcome')}
@@ -263,6 +285,7 @@
         {#each comments as c}
           <CommentItem {c} {postSlug} {author} {email} {url} {language}
             ownerAvatar={profileConfig.avatar}
+            {ownerName}
             on:reply={(e) => setReplyingTo(e.detail)}
             on:cancel={() => setReplyingTo(null)}
             on:submit={async (e) => {
@@ -282,3 +305,4 @@
     {/if}
   </div>
 </div>
+  $: showOwnerKeyInput = shouldShowOwnerKeyInput(author, ownerName);

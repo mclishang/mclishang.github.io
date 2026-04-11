@@ -3,7 +3,9 @@ import { describe, expect, it } from 'vitest';
 import {
   buildCommentsConfig,
   getCommentsPagination,
+  normalizeOwnerMetaResponse,
   normalizeCommentsResponse,
+  shouldShowOwnerKeyInput,
 } from './comments';
 
 describe('normalizeCommentsResponse', () => {
@@ -141,6 +143,41 @@ describe('buildCommentsConfig', () => {
       pageSize: 50,
       enabledLocales: ['zh-cn', 'en'],
       allowedOrigin: 'https://www.lishang.fun',
+      ownerName: '',
     });
+  });
+});
+
+describe('normalizeOwnerMetaResponse', () => {
+  it('从后端公开接口中提取站长昵称', () => {
+    expect(
+      normalizeOwnerMetaResponse({
+        code: 200,
+        data: {
+          ownerName: '一只殇',
+        },
+      })
+    ).toBe('一只殇');
+
+    expect(
+      normalizeOwnerMetaResponse({
+        owner_name: '一只殇',
+      })
+    ).toBe('一只殇');
+  });
+
+  it('在未配置站长昵称时返回空字符串', () => {
+    expect(normalizeOwnerMetaResponse({})).toBe('');
+    expect(normalizeOwnerMetaResponse({ data: {} })).toBe('');
+  });
+});
+
+describe('shouldShowOwnerKeyInput', () => {
+  it('只有昵称命中站长昵称时才显示密钥输入框', () => {
+    expect(shouldShowOwnerKeyInput('一只殇', '一只殇')).toBe(true);
+    expect(shouldShowOwnerKeyInput(' 一只殇 ', '一只殇')).toBe(true);
+    expect(shouldShowOwnerKeyInput('普通读者', '一只殇')).toBe(false);
+    expect(shouldShowOwnerKeyInput('一只殇', '')).toBe(false);
+    expect(shouldShowOwnerKeyInput('', '一只殇')).toBe(false);
   });
 });

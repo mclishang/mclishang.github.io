@@ -24,6 +24,7 @@ export interface CommentsConfig {
   pageSize: number;
   enabledLocales: string[];
   allowedOrigin: string;
+  ownerName: string;
 }
 
 type EnvValue = string | undefined;
@@ -148,7 +149,24 @@ export function buildCommentsConfig(env: PublicEnv): CommentsConfig {
     pageSize: parsePageSize(env.PUBLIC_COMMENTS_PAGE_SIZE),
     enabledLocales: parseLocales(env.PUBLIC_COMMENTS_ENABLED_LOCALES),
     allowedOrigin,
+    ownerName: '',
   };
+}
+
+export function normalizeOwnerMetaResponse(payload: Record<string, unknown>): string {
+  const data = (payload.data as Record<string, unknown> | undefined) ?? payload;
+  return getStringField(data, ['ownerName', 'owner_name']);
+}
+
+export function shouldShowOwnerKeyInput(author: string, ownerName: string): boolean {
+  const normalizedAuthor = author.trim();
+  const normalizedOwnerName = ownerName.trim();
+
+  if (!normalizedAuthor || !normalizedOwnerName) {
+    return false;
+  }
+
+  return normalizedAuthor === normalizedOwnerName;
 }
 
 function normalizeCommentItem(input: Record<string, unknown>): CommentItemData {

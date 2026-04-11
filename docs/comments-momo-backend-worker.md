@@ -32,6 +32,13 @@
 - D1 数据库：`MOMO_DB`
 - KV 命名空间：`MOMO_AUTH_KV`
 
+当前线上行为：
+
+- 访问 `https://momo-backend-worker.lishang778.workers.dev/` 会直接进入官方 Dashboard 页面
+- `GET /api/comments`、`POST /api/comments` 继续作为公开评论接口使用
+- `POST /admin/login`、`GET /admin/comments/list`、`PUT /admin/comments/status` 继续作为后台接口使用
+- Worker 资产路由已按 Dashboard 场景配置，`/api/*` 与 `/admin/*` 优先进入 Worker，其余路径优先返回静态页面资源
+
 推荐部署步骤：
 
 1. 在 Cloudflare Workers 中部署 `Momo-Backend/worker`
@@ -47,7 +54,7 @@
 
 当前博客前端按“评论提交后直接显示”设计接入。
 
-如果你的 Worker 环境默认仍然要求审核，请在后端配置或初始化逻辑中显式改成自动通过；否则前端会提示提交成功，但公开接口不会立即返回新评论。
+当前线上 Worker 已按“直接发布”运行，评论提交后默认写入 `approved` 状态。
 
 ## 内容约束
 
