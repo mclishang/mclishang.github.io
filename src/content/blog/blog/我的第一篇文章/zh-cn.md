@@ -1,10 +1,10 @@
 ---
 title: 我的第一篇文章
 pubDate: 2026-04-10T15:34:48.390Z
-description: 我的第一篇文章
+description: 
 image: ""
 draft: false
-slugId: 日常/碎碎念
+slugId: blog/我的第一篇文章
 category: 日常
 ---
 
