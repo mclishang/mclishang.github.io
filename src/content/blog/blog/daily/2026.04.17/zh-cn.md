@@ -5,7 +5,7 @@ description: ""
 image: ""
 draft: false
 slugId: blog/daily/2026.04.17
-category: 日常,生活记录
+category: 日常/生活记录
 ---
 
 # 有点害怕
