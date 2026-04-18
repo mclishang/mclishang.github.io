@@ -5,6 +5,7 @@
   import i18nit from '../../i18n/translation.ts';
   import {
     getCommentsPagination,
+    getCommentsRequestErrorMessage,
     normalizeOwnerMetaResponse,
     normalizeCommentsResponse,
     shouldShowOwnerKeyInput,
@@ -97,7 +98,10 @@
       comments = normalizeCommentsResponse(data);
       hasMore = getCommentsPagination(data?.data?.pagination).hasMore;
     } catch (err: any) {
-      error = err?.message || t('comments.loadFailed') || '评论服务暂时不可用，请稍后再试';
+      error = getCommentsRequestErrorMessage(
+        err,
+        t('comments.loadFailed') || '评论服务暂时不可用，请稍后再试'
+      );
     } finally {
       loading = false;
     }
@@ -192,7 +196,10 @@
       await loadComments();
       return true;
     } catch (err) {
-      const message = err instanceof Error ? err.message : t('comments.submitFailed') || '评论提交失败，请稍后再试';
+      const message = getCommentsRequestErrorMessage(
+        err,
+        t('comments.submitFailed') || '评论提交失败，请稍后再试'
+      );
       alert(message);
       return false;
     } finally {

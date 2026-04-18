@@ -165,6 +165,21 @@ export function normalizeOwnerMetaResponse(payload: Record<string, unknown>): st
   return getStringField(data, ['ownerName', 'owner_name']);
 }
 
+export function getCommentsRequestErrorMessage(
+  error: unknown,
+  fallback = '评论服务暂时不可用，请稍后再试'
+): string {
+  if (error instanceof TypeError) {
+    return '评论服务连接失败，请稍后重试';
+  }
+
+  if (error instanceof Error && error.message.trim()) {
+    return error.message;
+  }
+
+  return fallback;
+}
+
 export function shouldShowOwnerKeyInput(author: string, ownerName: string): boolean {
   const normalizedAuthor = author.trim();
   const normalizedOwnerName = ownerName.trim();

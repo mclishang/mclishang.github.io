@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import {
   buildCommentsConfig,
   getCommentsPagination,
+  getCommentsRequestErrorMessage,
   normalizeOwnerMetaResponse,
   normalizeCommentsResponse,
   shouldUseOwnerAvatar,
@@ -172,6 +173,18 @@ describe('normalizeOwnerMetaResponse', () => {
   it('在未配置站长昵称时返回空字符串', () => {
     expect(normalizeOwnerMetaResponse({})).toBe('');
     expect(normalizeOwnerMetaResponse({ data: {} })).toBe('');
+  });
+});
+
+describe('getCommentsRequestErrorMessage', () => {
+  it('在网络请求失败时返回统一中文提示，不暴露底层 fetch 报错', () => {
+    expect(
+      getCommentsRequestErrorMessage(new TypeError('Failed to fetch'))
+    ).toBe('评论服务连接失败，请稍后重试');
+
+    expect(
+      getCommentsRequestErrorMessage(new Error('Load failed'))
+    ).toBe('Load failed');
   });
 });
 

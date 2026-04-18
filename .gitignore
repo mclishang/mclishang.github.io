@@ -8,6 +8,11 @@ script/
 doc/
 deploy/momo-worker/
 deploy/momo-worker.zip
+deploy/momo-worker/*
+
+deploy/momo-worker/worker/*
+
+
 
 # 仅保留 Pages 部署工作流
 .github/workflows/release.yml

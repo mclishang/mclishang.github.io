@@ -10,7 +10,6 @@ import { buildCommentsConfig } from "./utils/comments"
 const commentsConfig = buildCommentsConfig({
     PUBLIC_SITE_URL: "https://www.lishang.fun",
     PUBLIC_COMMENTS_ENABLE: "true",
-    PUBLIC_COMMENTS_BACKEND_URL: "https://momo-backend-worker.lishang778.workers.dev",
     PUBLIC_COMMENTS_ENABLED_LOCALES: "zh-cn,en",
     ...import.meta.env,
 });
