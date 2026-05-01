@@ -4,7 +4,7 @@ pubDate: 2026-04-17T12:07:48.027Z
 description: ""
 image: ""
 draft: false
-slugId: blog/daily/2026.04.17
+slugId: daily\\2026.04.17
 category: 记录生活
 ---
 

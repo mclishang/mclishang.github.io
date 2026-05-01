@@ -4,7 +4,7 @@ pubDate: 2026-04-10T15:34:48.390Z
 description: ""
 image: ""
 draft: false
-slugId: blog/我的第一篇文章
+slugId: 我的第一篇文章
 category: 日常
 ---
 
